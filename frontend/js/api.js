@@ -1,7 +1,7 @@
 // ملف مركزي لكل الاتصالات بالباك إند
 // لما نرفع المشروع على Render، نغير API_BASE_URL بس في السطر ده
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://ml-portfolio-alpha.vercel.app';
 
 // دالة مساعدة عامة لطلبات GET
 async function apiGet(endpoint) {
