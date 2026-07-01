@@ -27,13 +27,15 @@ const getCertificateById = async (req, res) => {
 const createCertificate = async (req, res) => {
   try {
     const { title, issuer, year, verificationLink, order, description, relatedProjects } = req.body;
-    const imageUrl = req.file ? req.file.path : '';
 
-    if (!imageUrl) {
-      return res.status(400).json({ message: 'صورة أو شعار الشهادة مطلوب' });
+    // req.files بييجي بدل req.file لأننا بنستقبل ملفين
+    const logoUrl = req.files && req.files.logo ? req.files.logo[0].path : '';
+    const certificateImageUrl = req.files && req.files.certificateImage ? req.files.certificateImage[0].path : '';
+
+    if (!logoUrl) {
+      return res.status(400).json({ message: 'لوجو الجهة المانحة مطلوب' });
     }
 
-    // relatedProjects بييجي كنص فيه سطر لكل مشروع، فبنحوله لـ array
     const projectsArray = relatedProjects
       ? relatedProjects.split('\n').map((p) => p.trim()).filter((p) => p.length > 0)
       : [];
@@ -43,7 +45,8 @@ const createCertificate = async (req, res) => {
       issuer,
       year,
       verificationLink,
-      imageUrl,
+      logoUrl,
+      certificateImageUrl,
       order: order || 0,
       description: description || '',
       relatedProjects: projectsArray,
@@ -79,8 +82,11 @@ const updateCertificate = async (req, res) => {
         .filter((p) => p.length > 0);
     }
 
-    if (req.file) {
-      certificate.imageUrl = req.file.path;
+    if (req.files && req.files.logo) {
+      certificate.logoUrl = req.files.logo[0].path;
+    }
+    if (req.files && req.files.certificateImage) {
+      certificate.certificateImageUrl = req.files.certificateImage[0].path;
     }
 
     const updatedCertificate = await certificate.save();

@@ -17,5 +17,11 @@ const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // أقصى حجم 5 ميجابايت
 });
+// نسخة خاصة تقبل ملفين مع بعض (لوجو + صورة شهادة) في نفس الطلب
+const uploadCertificateFiles = upload.fields([
+  { name: 'logo', maxCount: 1 },
+  { name: 'certificateImage', maxCount: 1 },
+]);
 
 module.exports = upload;
+module.exports.uploadCertificateFiles = uploadCertificateFiles;

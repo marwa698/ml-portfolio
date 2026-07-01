@@ -11,18 +11,17 @@ async function renderCertificates() {
     return;
   }
 
-  // في الصفحة الرئيسية نعرض أول 4 بس
   const featured = certificates.slice(0, 4);
   container.innerHTML = featured.map(renderCertificateItem).join('');
 }
 
 function renderCertificateItem(cert) {
-  const imageUrl = cert.imageUrl ? buildImageUrl(cert.imageUrl) : '';
+  const logoUrl = cert.logoUrl ? buildImageUrl(cert.logoUrl) : '';
 
   return `
-    <div class="achievement-item">
+    <div class="achievement-item" onclick="window.location.href='certificate-details.html?id=${cert._id}'" style="cursor: pointer;">
       <div class="achievement-circle">
-        ${imageUrl ? `<img src="${imageUrl}" alt="${cert.title}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />` : '🏆'}
+        ${logoUrl ? `<img src="${logoUrl}" alt="${cert.title}" />` : '🏆'}
       </div>
       <div class="achievement-title">${cert.title}</div>
       <div class="achievement-sub">${cert.issuer} · ${cert.year}</div>

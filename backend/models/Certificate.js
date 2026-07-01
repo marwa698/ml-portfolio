@@ -5,12 +5,13 @@ const certificateSchema = new mongoose.Schema(
     title: { type: String, required: [true, 'اسم الشهادة مطلوب'], trim: true },
     issuer: { type: String, required: [true, 'الجهة المانحة مطلوبة'], trim: true },
     year: { type: String, required: true },
-    imageUrl: { type: String, required: true },
+    // لوجو الجهة المانحة - يظهر في كروت البورتوفوليو
+    logoUrl: { type: String, required: true },
+    // صورة الشهادة الفعلية - تظهر في صفحة التفاصيل بس
+    certificateImageUrl: { type: String, default: '' },
     verificationLink: { type: String, default: '' },
     order: { type: Number, default: 0 },
-    // وصف تفصيلي لمحتوى الكورس/الشهادة (يظهر في صفحة التفاصيل)
     description: { type: String, default: '' },
-    // المشاريع اللي اتعملت كجزء من الكورس ده (اختياري)، كل عنصر سطر نص
     relatedProjects: { type: [String], default: [] },
   },
   { timestamps: true }

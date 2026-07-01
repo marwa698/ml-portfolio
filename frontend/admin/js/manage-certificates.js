@@ -1,5 +1,3 @@
-// منطق صفحة إدارة الشهادات
-
 requireAdminAuth();
 renderAdminSidebar('certificates');
 
@@ -26,7 +24,7 @@ function renderCertificatesTable(certificates) {
     .map(
       (c) => `
     <tr>
-      <td>${c.imageUrl ? `<img src="${buildImageUrl(c.imageUrl)}" class="admin-row-thumb" style="border-radius: 50%;" alt="" />` : ''}</td>
+      <td>${c.logoUrl ? `<img src="${buildImageUrl(c.logoUrl)}" class="admin-row-thumb" alt="" />` : ''}</td>
       <td class="admin-row-title">${c.title}</td>
       <td>${c.issuer}</td>
       <td>${c.year}</td>
@@ -49,7 +47,8 @@ function openAddCertificateModal() {
   document.getElementById('certificate-modal-title').textContent = 'Add certificate';
   certForm.reset();
   document.getElementById('certificate-id').value = '';
-  document.getElementById('certificate-image-preview').style.display = 'none';
+  document.getElementById('certificate-logo-preview').style.display = 'none';
+  document.getElementById('certificate-cert-image-preview').style.display = 'none';
   certModal.classList.add('show');
 }
 
@@ -66,12 +65,21 @@ function openEditCertificateModal(id) {
   document.getElementById('certificate-order').value = cert.order || 0;
   document.getElementById('certificate-description').value = cert.description || '';
   document.getElementById('certificate-projects').value = (cert.relatedProjects || []).join('\n');
-  const preview = document.getElementById('certificate-image-preview');
-  if (cert.imageUrl) {
-    preview.src = buildImageUrl(cert.imageUrl);
-    preview.style.display = 'block';
+
+  const logoPreview = document.getElementById('certificate-logo-preview');
+  if (cert.logoUrl) {
+    logoPreview.src = buildImageUrl(cert.logoUrl);
+    logoPreview.style.display = 'block';
   } else {
-    preview.style.display = 'none';
+    logoPreview.style.display = 'none';
+  }
+
+  const certImgPreview = document.getElementById('certificate-cert-image-preview');
+  if (cert.certificateImageUrl) {
+    certImgPreview.src = buildImageUrl(cert.certificateImageUrl);
+    certImgPreview.style.display = 'block';
+  } else {
+    certImgPreview.style.display = 'none';
   }
 
   certModal.classList.add('show');
@@ -85,10 +93,18 @@ document.getElementById('add-certificate-btn').addEventListener('click', openAdd
 document.getElementById('certificate-modal-close').addEventListener('click', closeCertificateModal);
 document.getElementById('certificate-cancel-btn').addEventListener('click', closeCertificateModal);
 
-document.getElementById('certificate-image').addEventListener('change', function (e) {
+document.getElementById('certificate-logo').addEventListener('change', function (e) {
   const file = e.target.files[0];
   if (!file) return;
-  const preview = document.getElementById('certificate-image-preview');
+  const preview = document.getElementById('certificate-logo-preview');
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = 'block';
+});
+
+document.getElementById('certificate-cert-image').addEventListener('change', function (e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const preview = document.getElementById('certificate-cert-image-preview');
   preview.src = URL.createObjectURL(file);
   preview.style.display = 'block';
 });
@@ -107,9 +123,15 @@ certForm.addEventListener('submit', async function (e) {
   formData.append('order', document.getElementById('certificate-order').value);
   formData.append('description', document.getElementById('certificate-description').value);
   formData.append('relatedProjects', document.getElementById('certificate-projects').value);
-  const imageFile = document.getElementById('certificate-image').files[0];
-  if (imageFile) {
-    formData.append('image', imageFile);
+
+  const logoFile = document.getElementById('certificate-logo').files[0];
+  if (logoFile) {
+    formData.append('logo', logoFile);
+  }
+
+  const certImageFile = document.getElementById('certificate-cert-image').files[0];
+  if (certImageFile) {
+    formData.append('certificateImage', certImageFile);
   }
 
   submitBtn.disabled = true;
@@ -120,8 +142,8 @@ certForm.addEventListener('submit', async function (e) {
       await adminApiRequest(`/certificates/${id}`, { method: 'PUT', body: formData });
       showAdminToast('Certificate updated');
     } else {
-      if (!imageFile) {
-        throw new Error('Certificate image is required');
+      if (!logoFile) {
+        throw new Error('Issuer logo is required');
       }
       await adminApiRequest('/certificates', { method: 'POST', body: formData });
       showAdminToast('Certificate added');

@@ -97,13 +97,21 @@
   <label>Related projects (optional, one per line)</label>
   <textarea id="certificate-projects" class="form-textarea" style="min-height: 80px;" placeholder="Project 1 name&#10;Project 2 name"></textarea>
 </div>
-        <div class="modal-form-group"></div>
-          <label>Certificate logo / image</label>
-          <div class="file-input-wrap">
-            <img id="certificate-image-preview" class="file-preview" style="display: none;" />
-            <input type="file" id="certificate-image" accept="image/*" />
-          </div>
-        </div>
+        <div class="modal-form-group">
+  <label>Issuer logo (shown on portfolio cards)</label>
+  <div class="file-input-wrap">
+    <img id="certificate-logo-preview" class="file-preview" style="display: none;" />
+    <input type="file" id="certificate-logo" accept="image/*" />
+  </div>
+</div>
+
+<div class="modal-form-group">
+  <label>Certificate image (shown on details page, optional)</label>
+  <div class="file-input-wrap">
+    <img id="certificate-cert-image-preview" class="file-preview" style="display: none;" />
+    <input type="file" id="certificate-cert-image" accept="image/*" />
+  </div>
+</div>
 
         <div class="modal-actions">
           <button type="button" class="btn btn-outline" id="certificate-cancel-btn">Cancel</button>

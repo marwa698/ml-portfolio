@@ -1,5 +1,3 @@
-// عرض كل الشهادات في تاب "الشهادات" بصفحة projects.html
-
 async function renderAllCertificates() {
   const container = document.getElementById('certificates-grid');
   if (!container) return;
@@ -15,18 +13,17 @@ async function renderAllCertificates() {
 }
 
 function renderCertificateCard(cert) {
-  const imageUrl = cert.imageUrl ? buildImageUrl(cert.imageUrl) : '';
+  const logoUrl = cert.logoUrl ? buildImageUrl(cert.logoUrl) : '';
 
   return `
     <div class="certificate-card" onclick="window.location.href='certificate-details.html?id=${cert._id}'">
       <div class="certificate-icon">
-        ${imageUrl ? `<img src="${imageUrl}" alt="${cert.title}" />` : '🏆'}
+        ${logoUrl ? `<img src="${logoUrl}" alt="${cert.title}" />` : '🏆'}
       </div>
       <div class="certificate-title">${cert.title}</div>
       <div class="certificate-issuer">${cert.issuer} · ${cert.year}</div>
     </div>
   `;
-
 }
 
 document.addEventListener('DOMContentLoaded', renderAllCertificates);

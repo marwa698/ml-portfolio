@@ -10,11 +10,11 @@ const {
 const { protect } = require('../middleware/authMiddleware');
 const upload = require('../middleware/upload');
 
-router.get('/', getCertificates); // GET /api/certificates - عام
-router.get('/:id', getCertificateById); // GET /api/certificates/:id - عام (لصفحة التفاصيل)
+router.get('/', getCertificates);
+router.get('/:id', getCertificateById);
 
-router.post('/', protect, upload.single('image'), createCertificate); // محمي
-router.put('/:id', protect, upload.single('image'), updateCertificate); // محمي
-router.delete('/:id', protect, deleteCertificate); // محمي
+router.post('/', protect, upload.uploadCertificateFiles, createCertificate);
+router.put('/:id', protect, upload.uploadCertificateFiles, updateCertificate);
+router.delete('/:id', protect, deleteCertificate);
 
 module.exports = router;
