@@ -59,6 +59,13 @@ async function sendContactMessage(formData) {
 // دالة لبناء رابط صورة كاملة من اسم الملف المخزن في قاعدة البيانات
 function buildImageUrl(filename) {
   if (!filename) return '';
+  
+  // لو الرابط كامل بالفعل (زي روابط Cloudinary)، رجّعيه زي ما هو
+  if (filename.startsWith('http://') || filename.startsWith('https://')) {
+    return filename;
+  }
+  
+  // لو اسم ملف قديم بس (من قبل Cloudinary)، ابنيلها رابط زي الأول
   const base = API_BASE_URL.replace('/api', '');
   return `${base}/uploads/${filename}`;
 }
