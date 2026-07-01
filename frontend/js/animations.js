@@ -64,11 +64,20 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // === فتح/قفل قائمة الموبايل ===
-  const mobileToggle = document.getElementById('nav-toggle-mobile');
-  const navLinks = document.getElementById('nav-links');
-  if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', function () {
-      navLinks.classList.toggle('mobile-open');
+  // === فتح/قفل قائمة الموبايل ===
+const mobileToggle = document.getElementById('nav-toggle-mobile');
+const navLinks = document.getElementById('nav-links');
+if (mobileToggle && navLinks) {
+  mobileToggle.addEventListener('click', function () {
+    navLinks.classList.toggle('mobile-open');
+  });
+
+  // نقفل القائمة تلقائيًا لما المستخدم يدوس على أي رابط جواها
+  const navLinkItems = navLinks.querySelectorAll('a');
+  navLinkItems.forEach(function (link) {
+    link.addEventListener('click', function () {
+      navLinks.classList.remove('mobile-open');
     });
-  }
+  });
+}
 });
