@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marwa Yousry | ML Engineer Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ============ النافبار ============ -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">MY<span>.</span></a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#home" class="active" data-en="Home" data-ar="الرئيسية">Home</a>
+        <a href="#about" data-en="About" data-ar="نبذة">About</a>
+        <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
+        <a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a>
+        <a href="#achievements" data-en="Certificates" data-ar="الشهادات">Certificates</a>
+        <a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-toggle" id="lang-toggle-btn" aria-label="Toggle language">AR</button>
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <a href="contact.html" class="btn btn-primary" data-en="Let's talk" data-ar="تواصل معي">
+          Let's talk <i class="fa-solid fa-paper-plane"></i>
+        </a>
+        <i class="fa-solid fa-bars nav-toggle-mobile" id="nav-toggle-mobile"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ النافيجيشن الجانبي ============ -->
+  <nav class="side-nav">
+    <div class="side-nav-item active" data-section="home">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Home" data-ar="الرئيسية">Home</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="about">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="About" data-ar="نبذة">About</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="skills">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Skills" data-ar="المهارات">Skills</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="projects">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Projects" data-ar="المشاريع">Projects</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="achievements">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Certificates" data-ar="الشهادات">Certificates</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="contact">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Contact" data-ar="تواصل">Contact</span>
+    </div>
+  </nav>
+
+  <!-- ============ روابط التواصل الجانبية ============ -->
+  <div class="social-rail">
+    <a href="https://github.com/" data-social="github" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://linkedin.com/" data-social="linkedin" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="mailto:" data-settings-field="email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+
+  <!-- ============ Hero Section ============ -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-badge" data-en="ML Engineer" data-ar="مهندسة تعلم آلي">ML Engineer</span>
+
+          <h1 class="hero-title" data-html data-en="Machine Learning <span class='text-gradient'>Engineer</span>" data-ar="مهندسة <span class='text-gradient'>تعلم آلي</span>">
+            Machine Learning <span class="text-gradient">Engineer</span>
+          </h1>
+
+          <p class="hero-desc" data-en="I take ML models from notebook to interface — computer vision, NLP and forecasting systems people can actually click through." data-ar="أحوّل نماذج تعلم الآلة من الـ notebook إلى واجهة حقيقية — أنظمة رؤية حاسوبية ومعالجة لغة وتنبؤ يقدر أي شخص يتفاعل معها فعلياً.">
+            I take ML models from notebook to interface — computer vision, NLP and forecasting systems people can actually click through.
+          </p>
+
+          <p class="hero-desc-sub" data-en="From a CNN that spots plant disease in a photo, to an LLM-powered chatbot that reads your PDFs — I build the model and the screen around it." data-ar="من نموذج CNN يكشف أمراض النبات من صورة، إلى شات بوت مدعوم بـ LLM يقرأ ملفات PDF — أبني النموذج والواجهة من حوله.">
+            From a CNN that spots plant disease in a photo, to an LLM-powered chatbot that reads your PDFs — I build the model and the screen around it.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#" data-settings-field="cv-link" class="btn btn-primary" download data-en="Download CV" data-ar="تحميل السيرة الذاتية">
+              Download CV <i class="fa-solid fa-download"></i>
+            </a>
+            <a href="contact.html" class="btn btn-outline" data-en="Contact Me" data-ar="تواصل معي">
+              Contact Me <i class="fa-solid fa-user"></i>
+            </a>
+          </div>
+
+          <div class="scroll-hint">
+            <div class="scroll-hint-icon"><i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></div>
+            <span data-en="Scroll Down" data-ar="مرري للأسفل">Scroll Down</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-ring">
+            <div class="hero-ring-inner">
+              <!-- الصورة الشخصية: هتُرفع من لوحة الأدمن وتظهر هنا تلقائياً -->
+              <img src="assets/profile.jpg" alt="Marwa Yousry" class="hero-photo" id="hero-photo" style="display: none;"
+                   onerror="this.style.display='none'; document.getElementById('hero-photo-placeholder').style.display='flex';" />
+              <div class="hero-photo-placeholder" id="hero-photo-placeholder" style="display: flex;" data-en="Loading..." data-ar="جارِ التحميل...">
+                Loading...
+              </div>
+            </div>
+          </div>
+          <div class="hero-float-badge badge-1"><i class="fa-solid fa-chart-column" style="color: var(--accent-purple);"></i></div>
+          <div class="hero-float-badge badge-2"><i class="fa-solid fa-diagram-project" style="color: var(--accent-cyan);"></i></div>
+        </div>
+      </div>
+
+      <!-- شريط الإحصائيات -->
+      <div class="stats-bar reveal-on-scroll">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-brain"></i></div>
+          <div>
+            <div class="stat-value">8+</div>
+            <div class="stat-label" data-en="ML Projects Completed" data-ar="مشروع تعلم آلي مكتمل">ML Projects Completed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <div>
+            <div class="stat-value">2+</div>
+            <div class="stat-label" data-en="Years Experience" data-ar="سنوات خبرة">Years Experience</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <div>
+            <div class="stat-value">93%</div>
+            <div class="stat-label" data-en="Best Model Accuracy" data-ar="أعلى دقة نموذج">Best Model Accuracy</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div>
+            <div class="stat-value">5</div>
+            <div class="stat-label" data-en="Kaggle Competitions" data-ar="مسابقة Kaggle">Kaggle Competitions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ About Section ============ -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <span class="section-label" data-en="About Me" data-ar="نبذة عني">About Me</span>
+      <h2 class="section-title" data-html data-en="Building <span class='text-gradient'>intelligent</span> solutions with <span class='text-gradient'>data</span>" data-ar="بناء حلول <span class='text-gradient'>ذكية</span> بـ<span class='text-gradient'>البيانات</span>">
+        Building <span class="text-gradient">intelligent</span> solutions with <span class="text-gradient">data</span>
+      </h2>
+
+      <div class="about-grid">
+        <div class="reveal-on-scroll">
+          <p class="about-desc" data-en="I work across the ML stack — training models in PyTorch and Scikit-learn, then wrapping them in interfaces built with Streamlit and Flask. My projects span computer vision (plant disease detection, brain tumor classification), NLP (speech emotion recognition, LLM-powered chatbots) and time-series forecasting." data-ar="أعمل عبر كل طبقات تعلم الآلة — من تدريب النماذج بـ PyTorch وScikit-learn، إلى تغليفها بواجهات مبنية بـ Streamlit وFlask. مشاريعي تمتد من الرؤية الحاسوبية (كشف أمراض النباتات، تصنيف أورام الدماغ) إلى معالجة اللغة الطبيعية (التعرف على المشاعر الصوتية، شات بوتات مدعومة بـ LLM) وتوقع السلاسل الزمنية.">
+            I work across the ML stack — training models in PyTorch and Scikit-learn, then wrapping them in interfaces built with Streamlit and Flask. My projects span computer vision (plant disease detection, brain tumor classification), NLP (speech emotion recognition, LLM-powered chatbots) and time-series forecasting.
+          </p>
+
+          <div class="about-info-grid">
+            <div class="about-info-item">
+              <div class="about-info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div class="about-info-title" data-en="Education" data-ar="التعليم">Education</div>
+              <div class="about-info-sub" data-en="AI Student" data-ar="طالبة ذكاء اصطناعي">AI Student</div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="about-info-title" data-en="Location" data-ar="الموقع">Location</div>
+              <div class="about-info-sub" data-en="Egypt" data-ar="مصر">Egypt</div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-icon"><i class="fa-solid fa-briefcase"></i></div>
+              <div class="about-info-title" data-en="Freelance" data-ar="فريلانس">Freelance</div>
+              <div class="about-info-sub" data-en="Available" data-ar="متاحة">Available</div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-icon"><i class="fa-solid fa-clock"></i></div>
+              <div class="about-info-title" data-en="Experience" data-ar="الخبرة">Experience</div>
+              <div class="about-info-sub" data-en="2+ Years" data-ar="+2 سنوات">2+ Years</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card-glow reveal-on-scroll">
+          <div class="about-card-title"><i class="fa-solid fa-code"></i> <span data-en="What I do" data-ar="ماذا أفعل">What I do</span></div>
+          <ul class="about-list">
+            <li data-en="Computer Vision: image classification & detection (CNNs, OpenCV)" data-ar="رؤية حاسوبية: تصنيف وكشف الصور (CNNs و OpenCV)">Computer Vision: image classification & detection (CNNs, OpenCV)</li>
+            <li data-en="NLP & LLMs: sentiment, speech, and RAG-based chatbots" data-ar="معالجة اللغة وLLMs: تحليل المشاعر والصوت وشات بوتات RAG">NLP & LLMs: sentiment, speech, and RAG-based chatbots</li>
+            <li data-en="Forecasting & recommendation systems" data-ar="أنظمة التوقع والتوصية">Forecasting & recommendation systems</li>
+            <li data-en="End-to-end deployment with Streamlit & Flask interfaces" data-ar="نشر متكامل بواجهات Streamlit وFlask">End-to-end deployment with Streamlit & Flask interfaces</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-en="Read More" data-ar="اقرأ المزيد">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Skills Section ============ -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <span class="section-label" data-en="My Skills" data-ar="مهاراتي">My Skills</span>
+      <h2 class="section-title" data-html data-en="What I'm <span class='text-gradient'>good at</span>" data-ar="ما <span class='text-gradient'>أتميز به</span>">
+        What I'm <span class="text-gradient">good at</span>
+      </h2>
+
+      <div class="skills-grid" id="skills-grid">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Projects Section ============ -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <span class="section-label" data-en="Featured Projects" data-ar="مشاريع مميزة">Featured Projects</span>
+          <h2 class="section-title" data-html data-en="Projects I've <span class='text-gradient'>built</span>" data-ar="مشاريع <span class='text-gradient'>قمت ببنائها</span>">
+            Projects I've <span class="text-gradient">built</span>
+          </h2>
+        </div>
+        <a href="projects.html" class="btn btn-outline" data-en="View All Projects" data-ar="عرض كل المشاريع">
+          View All Projects <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Achievements Section ============ -->
+  <section id="achievements" class="achievements-section">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <span class="section-label" data-en="Featured Projects" data-ar="مشاريع مميزة">Featured Projects</span>
+          <h2 class="section-title" data-en="Achievements" data-ar="الإنجازات">Achievements</h2>
+        </div>
+        <a href="projects.html#certificates" class="btn btn-outline" data-en="View All Certificates" data-ar="عرض كل الشهادات">
+          View All Certificates <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="achievements-row" id="achievements-row">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Contact Section ============ -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <span class="section-label" data-en="Contact Me" data-ar="تواصل معي">Contact Me</span>
+      <h2 class="section-title" data-html data-en="Let's work <span class='text-gradient'>together</span>" data-ar="نعمل <span class='text-gradient'>معاً</span>">
+        Let's work <span class="text-gradient">together</span>
+      </h2>
+
+      <div class="contact-grid">
+        <form id="contact-form">
+          <div id="contact-alert" class="alert"></div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" name="name" class="form-input" data-placeholder-en="Your Name" data-placeholder-ar="اسمك" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" class="form-input" data-placeholder-en="Your Email" data-placeholder-ar="بريدك الإلكتروني" placeholder="Your Email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" class="form-input" data-placeholder-en="Subject" data-placeholder-ar="الموضوع" placeholder="Subject" required />
+          </div>
+          <div class="form-group">
+            <textarea name="body" class="form-textarea" data-placeholder-en="Your Message" data-placeholder-ar="رسالتك" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" data-en="Send Message" data-ar="إرسال الرسالة">
+            Send Message <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+
+        <div>
+          <h3 class="contact-info-title" data-en="Get in touch" data-ar="تواصل معي">Get in touch</h3>
+          <p class="contact-info-sub" data-en="I'm open to freelance work or full-time opportunities." data-ar="أنا منفتحة على عمل فريلانس أو وظيفة دائمة.">
+            I'm open to freelance work or full-time opportunities.
+          </p>
+
+          <div class="contact-info-row">
+            <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact-info-label" data-en="Email" data-ar="البريد الإلكتروني">Email</div>
+              <div class="contact-info-value" data-settings-field="email">marwa.yousry@email.com</div>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="contact-info-label" data-en="Phone" data-ar="الهاتف">Phone</div>
+              <div class="contact-info-value" data-settings-field="phone">+20 100 123 4567</div>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="contact-info-label" data-en="Location" data-ar="الموقع">Location</div>
+              <div class="contact-info-value" data-settings-field="location">Egypt</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ الفوتر ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="logo">MY<span>.</span></a>
+      <p class="footer-text" data-en="© 2024 Marwa Yousry. All rights reserved." data-ar="© 2024 مروة يسري. جميع الحقوق محفوظة.">
+        © 2024 Marwa Yousry. All rights reserved.
+      </p>
+      <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/theme-toggle.js"></script>
+  <script src="js/lang-toggle.js"></script>
+  <script src="js/apply-settings.js"></script>
+  <script src="js/render-skills.js"></script>
+  <script src="js/render-projects.js"></script>
+  <script src="js/render-certificates.js"></script>
+  <script src="js/contact-form.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

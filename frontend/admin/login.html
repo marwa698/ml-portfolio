@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | Marwa Yousry</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-logo">MY<span>.</span></div>
+      <p class="login-subtitle">Admin Panel — Sign in to manage your portfolio</p>
+
+      <div class="login-error" id="login-error"></div>
+
+      <form class="login-form" id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn btn-primary login-btn" id="login-btn">
+          Sign in <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const errorBox = document.getElementById('login-error');
+      const btn = document.getElementById('login-btn');
+
+      errorBox.classList.remove('show');
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.message || 'Login failed');
+        }
+
+        setAdminToken(data.token);
+        window.location.href = 'dashboard.html';
+      } catch (error) {
+        errorBox.textContent = error.message;
+        errorBox.classList.add('show');
+        btn.disabled = false;
+        btn.innerHTML = 'Sign in <i class="fa-solid fa-arrow-right"></i>';
+      }
+    });
+
+    // لو الأدمن مسجل دخول فعلاً، نوديه على الداشبورد مباشرة بدل ما يشوف صفحة اللوجين تاني
+    if (getAdminToken()) {
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+</body>
+</html>

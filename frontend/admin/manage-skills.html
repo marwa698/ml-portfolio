@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Skills | Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="admin-body">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1 class="admin-page-title">Skills</h1>
+        <p class="admin-page-sub">Manage your skills and proficiency levels</p>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <button class="btn btn-primary" id="add-skill-btn">
+          <i class="fa-solid fa-plus"></i> Add skill
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Category</th>
+            <th>Proficiency</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="skills-table-body">
+          <tr><td colspan="4" class="admin-empty">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="skill-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title" id="skill-modal-title">Add skill</h3>
+      <button class="modal-close-btn" id="skill-modal-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="skill-form">
+      <input type="hidden" id="skill-id" />
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Skill name</label>
+          <input type="text" id="skill-name" class="form-input" placeholder="Python" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Category</label>
+          <select id="skill-category" class="form-input">
+            <option value="Language">Language</option>
+            <option value="Framework">Framework</option>
+            <option value="Tool">Tool</option>
+            <option value="General">General</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-form-group">
+        <label>Icon class (Font Awesome) — example: <code>fa-brands fa-python</code></label>
+        <input type="text" id="skill-icon" class="form-input" placeholder="fa-brands fa-python" required />
+        <div style="margin-top:8px;font-size:12px;color:var(--text-muted);">
+          Browse icons at <a href="https://fontawesome.com/icons" target="_blank" style="color:var(--accent-cyan);">fontawesome.com/icons</a>
+        </div>
+      </div>
+      <div class="modal-form-group">
+        <label>Proficiency: <span id="proficiency-display">80</span>%</label>
+        <input type="range" id="skill-proficiency" min="10" max="100" value="80"
+          style="width:100%;accent-color:var(--accent-purple);"
+          oninput="document.getElementById('proficiency-display').textContent=this.value" />
+      </div>
+      <div class="modal-form-group">
+        <label>Display order</label>
+        <input type="number" id="skill-order" class="form-input" placeholder="0" value="0" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="skill-cancel-btn">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="skill-submit-btn">Save skill</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/theme-toggle.js"></script>
+<script src="../js/api.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-sidebar.js"></script>
+<script src="js/admin-toast.js"></script>
+<script src="js/manage-skills.js"></script>
+</body>
+</html>

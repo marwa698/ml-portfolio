@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messages | Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="admin-body">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1 class="admin-page-title">Messages</h1>
+        <p class="admin-page-sub">Messages received from your contact form</p>
+      </div>
+      <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="messages-table-body">
+          <tr><td colspan="5" class="admin-empty">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Message Detail Modal -->
+<div class="modal-overlay" id="message-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title" id="message-modal-subject">Message</h3>
+      <button class="modal-close-btn" id="message-modal-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div style="margin-bottom:16px;">
+      <div style="font-size:13px;color:var(--text-muted);">From</div>
+      <div style="font-weight:600;" id="message-modal-from"></div>
+      <div style="font-size:13px;color:var(--text-muted);margin-top:4px;" id="message-modal-email"></div>
+    </div>
+    <div style="margin-bottom:16px;">
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">Message</div>
+      <div class="message-detail-body" id="message-modal-body"></div>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-outline" id="message-modal-close-btn">Close</button>
+      <button type="button" class="btn btn-primary danger-btn" id="message-delete-btn">
+        <i class="fa-solid fa-trash"></i> Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/theme-toggle.js"></script>
+<script src="../js/api.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-sidebar.js"></script>
+<script src="js/admin-toast.js"></script>
+<script src="js/manage-messages.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Projects | Admin Panel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-body">
+    <aside class="admin-sidebar" id="admin-sidebar"></aside>
+
+    <main class="admin-main">
+      <div class="admin-topbar">
+        <div>
+          <h1 class="admin-page-title">Projects</h1>
+          <p class="admin-page-sub">Add, edit, or remove portfolio projects</p>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+          <button class="btn btn-primary" id="add-project-btn">
+            <i class="fa-solid fa-plus"></i> Add project
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-table-card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="projects-table-body">
+            <tr><td colspan="5" class="admin-empty">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- ============ Modal: إضافة / تعديل مشروع ============ -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="project-modal-title">Add project</h3>
+        <button class="modal-close-btn" id="project-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="project-form">
+        <input type="hidden" id="project-id" />
+
+        <div class="modal-form-group">
+          <label>Project title</label>
+          <input type="text" id="project-title" class="form-input" placeholder="Brain Tumor Classification" required />
+        </div>
+
+        <div class="modal-form-row">
+          <div class="modal-form-group">
+            <label>Category</label>
+            <select id="project-category" class="form-input" required>
+              <option value="Computer Vision">Computer Vision</option>
+              <option value="NLP">NLP</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="Deep Learning">Deep Learning</option>
+              <option value="Data Science">Data Science</option>
+            </select>
+          </div>
+          <div class="modal-form-group">
+            <label>Display order</label>
+            <input type="number" id="project-order" class="form-input" placeholder="0" value="0" />
+          </div>
+        </div>
+
+        <div class="modal-form-group">
+          <label>Short description (max 150 characters, shown in project card)</label>
+          <input type="text" id="project-short-desc" class="form-input" maxlength="150" placeholder="CNN model to classify brain MRI images into tumor or non-tumor." required />
+        </div>
+
+        <div class="modal-form-group">
+          <label>Full description (overview shown on project details page)</label>
+          <textarea id="project-description" class="form-textarea" placeholder="Describe what this project does and why you built it..." required></textarea>
+        </div>
+
+        <div class="modal-form-group">
+          <label>The problem (optional, shown on details page)</label>
+          <textarea id="project-problem" class="form-textarea" style="min-height: 80px;" placeholder="What problem does this project solve?"></textarea>
+        </div>
+
+        <div class="modal-form-group">
+          <label>The solution (optional)</label>
+          <textarea id="project-solution" class="form-textarea" style="min-height: 80px;" placeholder="How did you solve it?"></textarea>
+        </div>
+
+        <div class="modal-form-group">
+          <label>Results (optional)</label>
+          <textarea id="project-results" class="form-textarea" style="min-height: 80px;" placeholder="What were the results? (accuracy, metrics...)"></textarea>
+        </div>
+
+        <div class="modal-form-group">
+          <label>Technologies (comma-separated)</label>
+          <input type="text" id="project-technologies" class="form-input" placeholder="PyTorch, OpenCV, Streamlit" />
+        </div>
+
+        <div class="modal-form-row">
+          <div class="modal-form-group">
+            <label>GitHub link (optional)</label>
+            <input type="url" id="project-github" class="form-input" placeholder="https://github.com/..." />
+          </div>
+          <div class="modal-form-group">
+            <label>Live demo link (optional)</label>
+            <input type="url" id="project-live" class="form-input" placeholder="https://..." />
+          </div>
+        </div>
+
+        <div class="modal-form-group">
+          <label>Project image</label>
+          <div class="file-input-wrap">
+            <img id="project-image-preview" class="file-preview" style="display: none;" />
+            <input type="file" id="project-image" accept="image/*" />
+          </div>
+        </div>
+
+        <div class="modal-form-group checkbox-row">
+          <input type="checkbox" id="project-published" checked />
+          <label for="project-published" style="margin: 0;">Published (visible to visitors)</label>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="project-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="project-submit-btn">Save project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/theme-toggle.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/admin-sidebar.js"></script>
+  <script src="js/admin-toast.js"></script>
+  <script src="js/manage-projects.js"></script>
+</body>
+</html>

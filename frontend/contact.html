@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Marwa Yousry</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ============ النافبار ============ -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">MY<span>.</span></a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html#home" data-en="Home" data-ar="الرئيسية">Home</a>
+        <a href="index.html#about" data-en="About" data-ar="نبذة">About</a>
+        <a href="index.html#skills" data-en="Skills" data-ar="المهارات">Skills</a>
+        <a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a>
+        <a href="projects.html#certificates" data-en="Certificates" data-ar="الشهادات">Certificates</a>
+        <a href="contact.html" class="active" data-en="Contact" data-ar="تواصل">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-toggle" id="lang-toggle-btn" aria-label="Toggle language">AR</button>
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <i class="fa-solid fa-bars nav-toggle-mobile" id="nav-toggle-mobile"></i>
+      </div>
+    </div>
+  </header>
+
+  <section class="contact-page-section">
+    <div class="container">
+      <span class="section-label" data-en="Contact Me" data-ar="تواصل معي">Contact Me</span>
+      <h1 class="page-title" data-html data-en="Let's work <span class='text-gradient'>together</span>" data-ar="نعمل <span class='text-gradient'>معاً</span>">
+        Let's work <span class="text-gradient">together</span>
+      </h1>
+      <p class="page-subtitle" data-en="Have a project in mind or just want to say hi? I'd love to hear from you." data-ar="عندك مشروع في بالك أو حابة تسلمي عليّ؟ يسعدني التواصل معك.">
+        Have a project in mind or just want to say hi? I'd love to hear from you.
+      </p>
+
+      <div class="contact-page-grid">
+        <div>
+          <h3 class="contact-info-title" data-en="Get in touch" data-ar="معلومات التواصل">Get in touch</h3>
+          <p class="contact-info-sub" data-en="I'm open to freelance work or full-time opportunities." data-ar="أنا منفتحة على عمل فريلانس أو وظيفة دائمة.">
+            I'm open to freelance work or full-time opportunities.
+          </p>
+
+          <div class="card contact-method-card">
+            <div class="contact-method-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact-method-label" data-en="Email" data-ar="البريد الإلكتروني">Email</div>
+              <div class="contact-method-value" data-settings-field="email">marwa.yousry@email.com</div>
+            </div>
+          </div>
+
+          <div class="card contact-method-card">
+            <div class="contact-method-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="contact-method-label" data-en="Phone" data-ar="الهاتف">Phone</div>
+              <div class="contact-method-value" data-settings-field="phone">+20 100 123 4567</div>
+            </div>
+          </div>
+
+          <div class="card contact-method-card">
+            <div class="contact-method-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="contact-method-label" data-en="Location" data-ar="الموقع">Location</div>
+              <div class="contact-method-value" data-settings-field="location">Egypt</div>
+            </div>
+          </div>
+
+          <div class="contact-socials-row">
+            <a href="https://github.com/" data-social="github" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/" data-social="linkedin" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://wa.me/" data-social="whatsapp" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://instagram.com/" data-social="instagram" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <form id="contact-form">
+            <div id="contact-alert" class="alert"></div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" name="name" class="form-input" data-placeholder-en="Your Name" data-placeholder-ar="اسمك" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" class="form-input" data-placeholder-en="Your Email" data-placeholder-ar="بريدك الإلكتروني" placeholder="Your Email" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" name="subject" class="form-input" data-placeholder-en="Subject" data-placeholder-ar="الموضوع" placeholder="Subject" required />
+            </div>
+            <div class="form-group">
+              <textarea name="body" class="form-textarea" data-placeholder-en="Your Message" data-placeholder-ar="رسالتك" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" data-en="Send Message" data-ar="إرسال الرسالة">
+              Send Message <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ الفوتر ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="logo">MY<span>.</span></a>
+      <p class="footer-text" data-en="© 2024 Marwa Yousry. All rights reserved." data-ar="© 2024 مروة يسري. جميع الحقوق محفوظة.">
+        © 2024 Marwa Yousry. All rights reserved.
+      </p>
+      <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/theme-toggle.js"></script>
+  <script src="js/lang-toggle.js"></script>
+  <script src="js/apply-settings.js"></script>
+  <script src="js/contact-form.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

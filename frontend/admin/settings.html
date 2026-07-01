@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="admin-body">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1 class="admin-page-title">Settings</h1>
+        <p class="admin-page-sub">Update your personal info, photo, CV and social links</p>
+      </div>
+      <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+    </div>
+
+    <!-- Profile Image -->
+    <div class="settings-section">
+      <h3 class="settings-section-title"><i class="fa-solid fa-image"></i> Profile photo</h3>
+      <div class="profile-upload-row">
+        <img id="settings-profile-preview" class="profile-image-preview" src="" alt="Profile photo" onerror="this.src=''" />
+        <div>
+          <input type="file" id="settings-profile-input" accept="image/*" />
+          <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">This photo appears in the Hero section of your portfolio</div>
+          <button class="btn btn-primary" id="settings-profile-save-btn" style="margin-top:10px;">
+            <i class="fa-solid fa-upload"></i> Upload photo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CV -->
+    <div class="settings-section">
+      <h3 class="settings-section-title"><i class="fa-solid fa-file-pdf"></i> CV / Resume (PDF)</h3>
+      <div id="settings-cv-current"></div>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:10px;">
+        <input type="file" id="settings-cv-input" accept=".pdf" />
+        <button class="btn btn-primary" id="settings-cv-save-btn">
+          <i class="fa-solid fa-upload"></i> Upload CV
+        </button>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="settings-section">
+      <h3 class="settings-section-title"><i class="fa-solid fa-address-card"></i> Contact information</h3>
+      <form id="settings-contact-form">
+        <div class="modal-form-row">
+          <div class="modal-form-group">
+            <label>Email</label>
+            <input type="email" id="settings-email" class="form-input" placeholder="marwa@example.com" />
+          </div>
+          <div class="modal-form-group">
+            <label>Phone</label>
+            <input type="text" id="settings-phone" class="form-input" placeholder="+20 100 123 4567" />
+          </div>
+        </div>
+        <div class="modal-form-group">
+          <label>Location</label>
+          <input type="text" id="settings-location" class="form-input" placeholder="Egypt" />
+        </div>
+        <button type="submit" class="btn btn-primary" id="settings-contact-save-btn">
+          Save contact info
+        </button>
+      </form>
+    </div>
+
+    <!-- Social Links -->
+    <div class="settings-section">
+      <h3 class="settings-section-title"><i class="fa-solid fa-share-nodes"></i> Social links</h3>
+      <form id="settings-social-form">
+        <div class="modal-form-row">
+          <div class="modal-form-group">
+            <label><i class="fa-brands fa-github"></i> GitHub URL</label>
+            <input type="url" id="settings-github" class="form-input" placeholder="https://github.com/yourname" />
+          </div>
+          <div class="modal-form-group">
+            <label><i class="fa-brands fa-linkedin"></i> LinkedIn URL</label>
+            <input type="url" id="settings-linkedin" class="form-input" placeholder="https://linkedin.com/in/yourname" />
+          </div>
+        </div>
+        <div class="modal-form-row">
+          <div class="modal-form-group">
+            <label><i class="fa-brands fa-whatsapp"></i> WhatsApp URL</label>
+            <input type="url" id="settings-whatsapp" class="form-input" placeholder="https://wa.me/201001234567" />
+          </div>
+          <div class="modal-form-group">
+            <label><i class="fa-brands fa-instagram"></i> Instagram URL</label>
+            <input type="url" id="settings-instagram" class="form-input" placeholder="https://instagram.com/yourname" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="settings-social-save-btn">
+          Save social links
+        </button>
+      </form>
+    </div>
+
+  </main>
+</div>
+
+<script src="../js/theme-toggle.js"></script>
+<script src="../js/api.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-sidebar.js"></script>
+<script src="js/admin-toast.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>

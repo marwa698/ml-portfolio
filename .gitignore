@@ -1,0 +1,23 @@
+# Node modules (في أي مجلد فرعي)
+node_modules/
+**/node_modules/
+
+# ملفات البيئة السرية (مفاتيح قاعدة البيانات والتوكنات)
+.env
+**/.env
+
+# ملفات النظام
+.DS_Store
+Thumbs.db
+
+# ملفات مؤقتة ولوجات
+*.log
+npm-debug.log*
+
+# مجلد uploads (الصور المرفوعة محلياً - مش لازم تترفع على GitHub)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# ملفات VS Code الشخصية (اختياري)
+.vscode/*
+!.vscode/settings.json

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Admin Panel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-body">
+    <aside class="admin-sidebar" id="admin-sidebar"></aside>
+
+    <main class="admin-main">
+      <div class="admin-topbar">
+        <div>
+          <h1 class="admin-page-title">Dashboard</h1>
+          <p class="admin-page-sub">Overview of your portfolio content</p>
+        </div>
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+      </div>
+
+      <div class="admin-stats-grid" id="admin-stats-grid">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <div class="admin-table-card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Recent message</th>
+              <th>From</th>
+              <th>Received</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="recent-messages-body">
+            <tr><td colspan="4" class="admin-empty">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/theme-toggle.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/admin-sidebar.js"></script>
+  <script>
+    requireAdminAuth();
+    renderAdminSidebar('dashboard');
+
+    async function loadDashboard() {
+      try {
+        const [projects, certificates, skills, messages] = await Promise.all([
+          adminApiRequest('/projects/admin/all'),
+          fetch(`${API_BASE_URL}/certificates`).then((r) => r.json()),
+          fetch(`${API_BASE_URL}/skills`).then((r) => r.json()),
+          adminApiRequest('/messages'),
+        ]);
+
+        renderStats(projects, certificates, skills, messages);
+        renderRecentMessages(messages);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    function renderStats(projects, certificates, skills, messages) {
+      const unreadCount = messages.filter((m) => !m.isRead).length;
+      const container = document.getElementById('admin-stats-grid');
+
+      const stats = [
+        { icon: 'fa-diagram-project', value: projects.length, label: 'Total projects' },
+        { icon: 'fa-certificate', value: certificates.length, label: 'Certificates' },
+        { icon: 'fa-layer-group', value: skills.length, label: 'Skills' },
+        { icon: 'fa-envelope', value: unreadCount, label: 'Unread messages' },
+      ];
+
+      container.innerHTML = stats
+        .map(
+          (s) => `
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon"><i class="fa-solid ${s.icon}"></i></div>
+          <div>
+            <div class="admin-stat-value">${s.value}</div>
+            <div class="admin-stat-label">${s.label}</div>
+          </div>
+        </div>
+      `
+        )
+        .join('');
+    }
+
+    function renderRecentMessages(messages) {
+      const tbody = document.getElementById('recent-messages-body');
+      const recent = messages.slice(0, 5);
+
+      if (!recent.length) {
+        tbody.innerHTML = `<tr><td colspan="4" class="admin-empty">No messages yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = recent
+        .map(
+          (m) => `
+        <tr>
+          <td>${m.subject}</td>
+          <td>${m.name}</td>
+          <td>${new Date(m.createdAt).toLocaleDateString()}</td>
+          <td>
+            ${
+              m.isRead
+                ? '<span class="admin-badge admin-badge-published">Read</span>'
+                : '<span class="admin-badge admin-badge-unread">New</span>'
+            }
+          </td>
+        </tr>
+      `
+        )
+        .join('');
+    }
+
+    loadDashboard();
+  </script>
+</body>
+</html>
