@@ -18,11 +18,6 @@ connectDB();
 const app = express();
 
 // === Middleware عامة ===
-
-// CORS: نسمح للفرونت إند بالاتصال بالـ API
-// في التطوير المحلي، localhost و 127.0.0.1 بيتعاملوا كنطاقين مختلفين تماماً
-// من ناحية CORS حتى لو بيوصلوا لنفس الجهاز، فبنسمح بالاتنين مع أي بورت
-// عشان ما تتكررش مشكلة "Failed to fetch" بسبب اختلاف الرابط المستخدم
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   /^http:\/\/localhost:\d+$/,
@@ -32,24 +27,17 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      // الطلبات من أدوات زي Postman (بدون origin) بنسمح بيها في التطوير
       if (!origin) return callback(null, true);
-
       const isAllowed = allowedOrigins.some((allowed) =>
         allowed instanceof RegExp ? allowed.test(origin) : allowed === origin
       );
-
       callback(null, isAllowed);
     },
   })
 );
 
-// نسمح لـ Express يفهم JSON جاي من الفرونت إند (مثل نموذج التواصل)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// نخلي مجلد uploads متاح للجميع عشان الصور تظهر في المتصفح
-// مثال: GET /uploads/1234567-image.png
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // === المسارات ===
@@ -60,25 +48,27 @@ app.use('/api/messages', messageRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/settings', settingsRoutes);
 
-// مسار اختباري بسيط للتأكد إن السيرفر شغال
 app.get('/', (req, res) => {
   res.json({ message: 'ML Portfolio API شغال تمام ✓' });
 });
 
-// === معالجة الأخطاء العامة ===
-// لو حصل خطأ مش متوقع في أي route، يتمسك هنا بدل ما السيرفر يقع
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'حصل خطأ غير متوقع في السيرفر', error: err.message });
 });
 
-// مسار غير موجود (404)
 app.use((req, res) => {
   res.status(404).json({ message: 'الرابط المطلوب غير موجود' });
 });
 
-const PORT = process.env.PORT || 5000;
+// === الفرق الوحيد هنا ===
+// لو شغالة محليًا (على جهازك) هيشغل السيرفر عادي بـ listen
+// لو شغالة على Vercel، هيصدّر الـ app بس من غير listen
+if (process.env.VERCEL !== '1') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`🚀 السيرفر شغال على http://localhost:${PORT}`);
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`🚀 السيرفر شغال على http://localhost:${PORT}`);
-});
+module.exports = app;
