@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate Details | Marwa Yousry</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/project-details.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">MY<span>.</span></a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html#home" data-en="Home" data-ar="الرئيسية">Home</a>
+        <a href="index.html#about" data-en="About" data-ar="نبذة">About</a>
+        <a href="index.html#skills" data-en="Skills" data-ar="المهارات">Skills</a>
+        <a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a>
+        <a href="projects.html#certificates" class="active" data-en="Certificates" data-ar="الشهادات">Certificates</a>
+        <a href="contact.html" data-en="Contact" data-ar="تواصل">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-toggle" id="lang-toggle-btn" aria-label="Toggle language">AR</button>
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <a href="contact.html" class="btn btn-primary" data-en="Let's talk" data-ar="تواصل معي">
+          Let's talk <i class="fa-solid fa-paper-plane"></i>
+        </a>
+        <i class="fa-solid fa-bars nav-toggle-mobile" id="nav-toggle-mobile"></i>
+      </div>
+    </div>
+  </header>
+
+  <section class="details-hero">
+    <div class="container">
+      <a href="projects.html#certificates" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i> <span data-en="Back to Certificates" data-ar="العودة للشهادات">Back to Certificates</span>
+      </a>
+
+      <div id="cert-details-container">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="logo">MY<span>.</span></a>
+      <p class="footer-text" data-en="© 2024 Marwa Yousry. All rights reserved." data-ar="© 2024 مروة يسري. جميع الحقوق محفوظة.">
+        © 2024 Marwa Yousry. All rights reserved.
+      </p>
+      <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/theme-toggle.js"></script>
+  <script src="js/lang-toggle.js"></script>
+  <script src="js/render-certificate-details.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

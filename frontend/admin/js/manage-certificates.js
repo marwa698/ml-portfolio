@@ -64,7 +64,8 @@ function openEditCertificateModal(id) {
   document.getElementById('certificate-year').value = cert.year;
   document.getElementById('certificate-link').value = cert.verificationLink || '';
   document.getElementById('certificate-order').value = cert.order || 0;
-
+  document.getElementById('certificate-description').value = cert.description || '';
+  document.getElementById('certificate-projects').value = (cert.relatedProjects || []).join('\n');
   const preview = document.getElementById('certificate-image-preview');
   if (cert.imageUrl) {
     preview.src = buildImageUrl(cert.imageUrl);
@@ -104,7 +105,8 @@ certForm.addEventListener('submit', async function (e) {
   formData.append('year', document.getElementById('certificate-year').value);
   formData.append('verificationLink', document.getElementById('certificate-link').value);
   formData.append('order', document.getElementById('certificate-order').value);
-
+  formData.append('description', document.getElementById('certificate-description').value);
+  formData.append('relatedProjects', document.getElementById('certificate-projects').value);
   const imageFile = document.getElementById('certificate-image').files[0];
   if (imageFile) {
     formData.append('image', imageFile);

@@ -43,7 +43,9 @@ async function fetchProjectById(id) {
 async function fetchCertificates() {
   return (await apiGet('/certificates')) || [];
 }
-
+async function fetchCertificateById(id) {
+  return await apiGet(`/certificates/${id}`);
+}
 async function fetchSkills() {
   return (await apiGet('/skills')) || [];
 }

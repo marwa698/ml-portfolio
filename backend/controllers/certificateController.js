@@ -10,15 +10,33 @@ const getCertificates = async (req, res) => {
   }
 };
 
+// GET /api/certificates/:id
+const getCertificateById = async (req, res) => {
+  try {
+    const certificate = await Certificate.findById(req.params.id);
+    if (!certificate) {
+      return res.status(404).json({ message: 'الشهادة غير موجودة' });
+    }
+    res.json(certificate);
+  } catch (error) {
+    res.status(500).json({ message: 'حصل خطأ في جلب الشهادة', error: error.message });
+  }
+};
+
 // POST /api/certificates
 const createCertificate = async (req, res) => {
   try {
-    const { title, issuer, year, verificationLink, order } = req.body;
+    const { title, issuer, year, verificationLink, order, description, relatedProjects } = req.body;
     const imageUrl = req.file ? req.file.path : '';
 
     if (!imageUrl) {
       return res.status(400).json({ message: 'صورة أو شعار الشهادة مطلوب' });
     }
+
+    // relatedProjects بييجي كنص فيه سطر لكل مشروع، فبنحوله لـ array
+    const projectsArray = relatedProjects
+      ? relatedProjects.split('\n').map((p) => p.trim()).filter((p) => p.length > 0)
+      : [];
 
     const certificate = await Certificate.create({
       title,
@@ -27,6 +45,8 @@ const createCertificate = async (req, res) => {
       verificationLink,
       imageUrl,
       order: order || 0,
+      description: description || '',
+      relatedProjects: projectsArray,
     });
 
     res.status(201).json(certificate);
@@ -43,13 +63,21 @@ const updateCertificate = async (req, res) => {
       return res.status(404).json({ message: 'الشهادة غير موجودة' });
     }
 
-    const { title, issuer, year, verificationLink, order } = req.body;
+    const { title, issuer, year, verificationLink, order, description, relatedProjects } = req.body;
 
     certificate.title = title ?? certificate.title;
     certificate.issuer = issuer ?? certificate.issuer;
     certificate.year = year ?? certificate.year;
     certificate.verificationLink = verificationLink ?? certificate.verificationLink;
     certificate.order = order ?? certificate.order;
+    certificate.description = description ?? certificate.description;
+
+    if (relatedProjects !== undefined) {
+      certificate.relatedProjects = relatedProjects
+        .split('\n')
+        .map((p) => p.trim())
+        .filter((p) => p.length > 0);
+    }
 
     if (req.file) {
       certificate.imageUrl = req.file.path;
@@ -69,7 +97,6 @@ const deleteCertificate = async (req, res) => {
     if (!certificate) {
       return res.status(404).json({ message: 'الشهادة غير موجودة' });
     }
-
     await certificate.deleteOne();
     res.json({ message: 'تم حذف الشهادة بنجاح' });
   } catch (error) {
@@ -79,6 +106,7 @@ const deleteCertificate = async (req, res) => {
 
 module.exports = {
   getCertificates,
+  getCertificateById,
   createCertificate,
   updateCertificate,
   deleteCertificate,

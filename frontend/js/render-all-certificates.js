@@ -18,19 +18,15 @@ function renderCertificateCard(cert) {
   const imageUrl = cert.imageUrl ? buildImageUrl(cert.imageUrl) : '';
 
   return `
-    <div class="certificate-card">
+    <div class="certificate-card" onclick="window.location.href='certificate-details.html?id=${cert._id}'">
       <div class="certificate-icon">
         ${imageUrl ? `<img src="${imageUrl}" alt="${cert.title}" />` : '🏆'}
       </div>
       <div class="certificate-title">${cert.title}</div>
       <div class="certificate-issuer">${cert.issuer} · ${cert.year}</div>
-      ${
-        cert.verificationLink
-          ? `<a href="${cert.verificationLink}" target="_blank" class="certificate-link"><span data-en="Verify" data-ar="تحقق">Verify</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
-          : ''
-      }
     </div>
   `;
+
 }
 
 document.addEventListener('DOMContentLoaded', renderAllCertificates);
