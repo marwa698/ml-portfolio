@@ -52,6 +52,9 @@
   .social-rail {
     display: none;
   }
+  .all-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ===================================
@@ -127,6 +130,18 @@
 .certificate-title {
   font-size: 13px;
 }
+.all-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
 }
 
 /* ===================================
