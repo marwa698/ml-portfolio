@@ -8,8 +8,8 @@ const storage = new CloudinaryStorage({
     folder: 'ml-portfolio/cv',
     allowed_formats: ['pdf'],
     resource_type: 'raw',
-    format: 'pdf', // نحدد الصيغة صراحة عشان الرابط يتولد ومعاه الامتداد الصح
-    public_id: (req, file) => `cv-${Date.now()}`,
+    // نحط الامتداد جوه اسم الملف نفسه عشان الرابط يتولد ومعاه .pdf في الآخر
+    public_id: (req, file) => `cv-${Date.now()}.pdf`,
   },
 });
 
