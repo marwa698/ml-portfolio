@@ -37,8 +37,7 @@ async function renderCertificateDetails() {
       </div>
     </div>
 
-    ${displayImage ? `<div class="details-cover"><img src="${displayImage}" alt="${cert.title}" /></div>` : ''}
-
+    ${displayImage ? `<div class="cert-image-cover"><img src="${displayImage}" alt="${cert.title}" /></div>` : ''}
     <div class="details-body" style="grid-template-columns: 1fr;">
       <div class="details-main">
         ${
