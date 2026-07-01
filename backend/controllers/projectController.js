@@ -34,15 +34,25 @@ const getProjectById = async (req, res) => {
 };
 
 // POST /api/projects
+// POST /api/projects
 const createProject = async (req, res) => {
   try {
-    const { title, description, shortDescription, category, technologies, githubLink, liveLink, order, published } = req.body;
+    const { title, description, shortDescription, category, technologies, githubLink, liveLink, order, published, fullDetails } = req.body;
 
-    // بعد Cloudinary، الرابط الكامل للصورة بيكون في req.file.path
     const imageUrl = req.file ? req.file.path : '';
 
     if (!imageUrl) {
       return res.status(400).json({ message: 'صورة المشروع مطلوبة' });
+    }
+
+    // fullDetails بييجي كنص JSON من الفورم، فلازم نحوله لكائن قبل الحفظ
+    let parsedFullDetails = { problem: '', solution: '', results: '' };
+    if (fullDetails) {
+      try {
+        parsedFullDetails = JSON.parse(fullDetails);
+      } catch (e) {
+        // لو حصل خطأ في التحويل، نسيب القيم الافتراضية الفاضية
+      }
     }
 
     const project = await Project.create({
@@ -54,6 +64,7 @@ const createProject = async (req, res) => {
       githubLink,
       liveLink,
       imageUrl,
+      fullDetails: parsedFullDetails,
       order: order || 0,
       published: published !== undefined ? published : true,
     });
@@ -72,7 +83,7 @@ const updateProject = async (req, res) => {
       return res.status(404).json({ message: 'المشروع غير موجود' });
     }
 
-    const { title, description, shortDescription, category, technologies, githubLink, liveLink, order, published } = req.body;
+    const { title, description, shortDescription, category, technologies, githubLink, liveLink, order, published, fullDetails } = req.body;
 
     project.title = title ?? project.title;
     project.description = description ?? project.description;
@@ -87,7 +98,15 @@ const updateProject = async (req, res) => {
       project.technologies = technologies.split(',').map((t) => t.trim());
     }
 
-    // لو الأدمن رفع صورة جديدة، بس نستبدل الرابط (القديمة هتفضل على Cloudinary، مش هتتحذف تلقائيًا)
+    // نحدث fullDetails لو اتبعتت
+    if (fullDetails) {
+      try {
+        project.fullDetails = JSON.parse(fullDetails);
+      } catch (e) {
+        // لو حصل خطأ في التحويل، نسيب القيمة القديمة زي ما هي
+      }
+    }
+
     if (req.file) {
       project.imageUrl = req.file.path;
     }
@@ -98,7 +117,6 @@ const updateProject = async (req, res) => {
     res.status(500).json({ message: 'حصل خطأ في تعديل المشروع', error: error.message });
   }
 };
-
 // DELETE /api/projects/:id
 const deleteProject = async (req, res) => {
   try {
