@@ -1,9 +1,6 @@
 const Project = require('../models/Project');
-const fs = require('fs');
-const path = require('path');
 
 // GET /api/projects
-// يرجع كل المشاريع المنشورة - دي اللي تظهر في صفحة Projects العامة
 const getProjects = async (req, res) => {
   try {
     const projects = await Project.find({ published: true }).sort({ order: 1, createdAt: -1 });
@@ -14,7 +11,6 @@ const getProjects = async (req, res) => {
 };
 
 // GET /api/projects/all
-// يرجع كل المشاريع (منشورة وغير منشورة) - للأدمن فقط
 const getAllProjectsAdmin = async (req, res) => {
   try {
     const projects = await Project.find().sort({ order: 1, createdAt: -1 });
@@ -25,7 +21,6 @@ const getAllProjectsAdmin = async (req, res) => {
 };
 
 // GET /api/projects/:id
-// يرجع تفاصيل مشروع واحد - لصفحة project-details.html
 const getProjectById = async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -39,13 +34,12 @@ const getProjectById = async (req, res) => {
 };
 
 // POST /api/projects
-// إضافة مشروع جديد - من لوحة الأدمن فقط
 const createProject = async (req, res) => {
   try {
     const { title, description, shortDescription, category, technologies, githubLink, liveLink, order, published } = req.body;
 
-    // الصورة بتيجي من multer وبتكون متخزنة في req.file
-    const imageUrl = req.file ? req.file.filename : '';
+    // بعد Cloudinary، الرابط الكامل للصورة بيكون في req.file.path
+    const imageUrl = req.file ? req.file.path : '';
 
     if (!imageUrl) {
       return res.status(400).json({ message: 'صورة المشروع مطلوبة' });
@@ -56,7 +50,6 @@ const createProject = async (req, res) => {
       description,
       shortDescription,
       category,
-      // technologies بتيجي كنص "Python,TensorFlow" فنحولها لـ array
       technologies: technologies ? technologies.split(',').map((t) => t.trim()) : [],
       githubLink,
       liveLink,
@@ -72,7 +65,6 @@ const createProject = async (req, res) => {
 };
 
 // PUT /api/projects/:id
-// تعديل مشروع موجود - من لوحة الأدمن فقط
 const updateProject = async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -95,13 +87,9 @@ const updateProject = async (req, res) => {
       project.technologies = technologies.split(',').map((t) => t.trim());
     }
 
-    // لو الأدمن رفع صورة جديدة، نحذف القديمة ونحدث الاسم
+    // لو الأدمن رفع صورة جديدة، بس نستبدل الرابط (القديمة هتفضل على Cloudinary، مش هتتحذف تلقائيًا)
     if (req.file) {
-      const oldImagePath = path.join(__dirname, '..', 'uploads', project.imageUrl);
-      if (fs.existsSync(oldImagePath)) {
-        fs.unlinkSync(oldImagePath);
-      }
-      project.imageUrl = req.file.filename;
+      project.imageUrl = req.file.path;
     }
 
     const updatedProject = await project.save();
@@ -112,18 +100,11 @@ const updateProject = async (req, res) => {
 };
 
 // DELETE /api/projects/:id
-// حذف مشروع - من لوحة الأدمن فقط
 const deleteProject = async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
     if (!project) {
       return res.status(404).json({ message: 'المشروع غير موجود' });
-    }
-
-    // نحذف صورة المشروع من السيرفر كمان عشان ما تفضلش مساحة ضايعة
-    const imagePath = path.join(__dirname, '..', 'uploads', project.imageUrl);
-    if (fs.existsSync(imagePath)) {
-      fs.unlinkSync(imagePath);
     }
 
     await project.deleteOne();

@@ -1,9 +1,5 @@
 const Settings = require('../models/Settings');
-const fs = require('fs');
-const path = require('path');
 
-// دالة مساعدة: تجيب الإعدادات، ولو معندهاش document لسه، تعمل واحد بالقيم الافتراضية
-// كده نضمن إن فيه دايماً document واحد بس للإعدادات (مش أكتر ومش أقل)
 const getOrCreateSettings = async () => {
   let settings = await Settings.findOne();
   if (!settings) {
@@ -13,7 +9,6 @@ const getOrCreateSettings = async () => {
 };
 
 // GET /api/settings
-// عام - بيستخدمه أي زائر لعرض بيانات التواصل في الصفحة الرئيسية وصفحة Contact
 const getSettings = async (req, res) => {
   try {
     const settings = await getOrCreateSettings();
@@ -24,7 +19,6 @@ const getSettings = async (req, res) => {
 };
 
 // PUT /api/settings
-// محمي - تعديل البيانات النصية (إيميل، تليفون، موقع، روابط التواصل)
 const updateSettings = async (req, res) => {
   try {
     const settings = await getOrCreateSettings();
@@ -47,7 +41,6 @@ const updateSettings = async (req, res) => {
 };
 
 // PUT /api/settings/profile-image
-// محمي - رفع أو تغيير الصورة الشخصية
 const updateProfileImage = async (req, res) => {
   try {
     if (!req.file) {
@@ -55,14 +48,7 @@ const updateProfileImage = async (req, res) => {
     }
 
     const settings = await getOrCreateSettings();
-
-    // نحذف الصورة القديمة من السيرفر لو موجودة
-    if (settings.profileImage) {
-      const oldPath = path.join(__dirname, '..', 'uploads', settings.profileImage);
-      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
-    }
-
-    settings.profileImage = req.file.filename;
+    settings.profileImage = req.file.path;
     const updated = await settings.save();
     res.json(updated);
   } catch (error) {
@@ -71,7 +57,6 @@ const updateProfileImage = async (req, res) => {
 };
 
 // PUT /api/settings/cv
-// محمي - رفع أو تغيير ملف السيرة الذاتية
 const updateCV = async (req, res) => {
   try {
     if (!req.file) {
@@ -79,13 +64,7 @@ const updateCV = async (req, res) => {
     }
 
     const settings = await getOrCreateSettings();
-
-    if (settings.cvFile) {
-      const oldPath = path.join(__dirname, '..', 'uploads', settings.cvFile);
-      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
-    }
-
-    settings.cvFile = req.file.filename;
+    settings.cvFile = req.file.path;
     const updated = await settings.save();
     res.json(updated);
   } catch (error) {

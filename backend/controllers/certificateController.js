@@ -1,6 +1,4 @@
 const Certificate = require('../models/Certificate');
-const fs = require('fs');
-const path = require('path');
 
 // GET /api/certificates
 const getCertificates = async (req, res) => {
@@ -16,7 +14,7 @@ const getCertificates = async (req, res) => {
 const createCertificate = async (req, res) => {
   try {
     const { title, issuer, year, verificationLink, order } = req.body;
-    const imageUrl = req.file ? req.file.filename : '';
+    const imageUrl = req.file ? req.file.path : '';
 
     if (!imageUrl) {
       return res.status(400).json({ message: 'صورة أو شعار الشهادة مطلوب' });
@@ -54,11 +52,7 @@ const updateCertificate = async (req, res) => {
     certificate.order = order ?? certificate.order;
 
     if (req.file) {
-      const oldImagePath = path.join(__dirname, '..', 'uploads', certificate.imageUrl);
-      if (fs.existsSync(oldImagePath)) {
-        fs.unlinkSync(oldImagePath);
-      }
-      certificate.imageUrl = req.file.filename;
+      certificate.imageUrl = req.file.path;
     }
 
     const updatedCertificate = await certificate.save();
@@ -74,11 +68,6 @@ const deleteCertificate = async (req, res) => {
     const certificate = await Certificate.findById(req.params.id);
     if (!certificate) {
       return res.status(404).json({ message: 'الشهادة غير موجودة' });
-    }
-
-    const imagePath = path.join(__dirname, '..', 'uploads', certificate.imageUrl);
-    if (fs.existsSync(imagePath)) {
-      fs.unlinkSync(imagePath);
     }
 
     await certificate.deleteOne();
