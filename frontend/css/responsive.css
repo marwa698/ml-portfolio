@@ -162,6 +162,14 @@
 }
 
 @media (max-width: 640px) {
+  .skills-tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+ .skills-tabs::-webkit-scrollbar { display: none; }
+ .skills-tab-desc { padding: 18px; }
   .details-hero {
     padding: 100px 0 30px;
   }

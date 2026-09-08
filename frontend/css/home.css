@@ -622,5 +622,58 @@
   background: rgba(34, 211, 238, 0.14);
 }
 /* ===================================
+   Skills Tabs
+   =================================== */
+.skills-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.skill-tab-btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.skill-tab-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.skill-tab-btn.active {
+  background: var(--gradient-main);
+  border-color: transparent;
+  color: #fff;
+}
+
+.skills-tab-desc {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  margin-bottom: 24px;
+}
+
+.skills-tab-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.skills-tab-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+/* ===================================
    Responsive (سيتم استكمالها في responsive.css)
    =================================== */

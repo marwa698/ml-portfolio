@@ -18,7 +18,7 @@
     <div class="admin-topbar">
       <div>
         <h1 class="admin-page-title">Skills</h1>
-        <p class="admin-page-sub">Manage your skills and proficiency levels</p>
+        <p class="admin-page-sub">Manage your skills and which tab they appear under</p>
       </div>
       <div style="display:flex;gap:12px;align-items:center;">
         <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
@@ -61,12 +61,12 @@
           <input type="text" id="skill-name" class="form-input" placeholder="Python" required />
         </div>
         <div class="modal-form-group">
-          <label>Category</label>
+          <label>Category (tab)</label>
           <select id="skill-category" class="form-input">
-            <option value="Language">Language</option>
-            <option value="Framework">Framework</option>
-            <option value="Tool">Tool</option>
-            <option value="General">General</option>
+            <option value="Technical">Technical</option>
+            <option value="Soft Skills">Soft Skills</option>
+            <option value="Tools">Tools</option>
+            <option value="Languages">Languages</option>
           </select>
         </div>
       </div>
@@ -78,13 +78,13 @@
         </div>
       </div>
       <div class="modal-form-group">
-        <label>Proficiency: <span id="proficiency-display">80</span>%</label>
+        <label>Proficiency (internal only, not shown on the site): <span id="proficiency-display">80</span>%</label>
         <input type="range" id="skill-proficiency" min="10" max="100" value="80"
           style="width:100%;accent-color:var(--accent-purple);"
           oninput="document.getElementById('proficiency-display').textContent=this.value" />
       </div>
       <div class="modal-form-group">
-        <label>Display order</label>
+        <label>Display order (within its tab)</label>
         <input type="number" id="skill-order" class="form-input" placeholder="0" value="0" />
       </div>
       <div class="modal-actions">
