@@ -17,14 +17,30 @@ async function renderCertificates() {
 
 function renderCertificateItem(cert) {
   const logoUrl = cert.logoUrl ? buildImageUrl(cert.logoUrl) : '';
+  const coverUrl = cert.certificateImageUrl ? buildImageUrl(cert.certificateImageUrl) : logoUrl;
+  const showLogoBadge = Boolean(cert.certificateImageUrl && logoUrl);
 
   return `
-    <div class="achievement-item" onclick="window.location.href='certificate-details.html?id=${cert._id}'" style="cursor: pointer;">
-      <div class="achievement-circle">
-        ${logoUrl ? `<img src="${logoUrl}" alt="${cert.title}" />` : '🏆'}
+    <div class="certificate-card" onclick="window.location.href='certificate-details.html?id=${cert._id}'">
+      <div class="certificate-img-wrap">
+        ${
+          coverUrl
+            ? `<img src="${coverUrl}" alt="${cert.title}" />`
+            : `<div class="certificate-img-placeholder"><i class="fa-solid fa-certificate"></i></div>`
+        }
+        ${showLogoBadge ? `<div class="certificate-logo-badge"><img src="${logoUrl}" alt="${cert.issuer}" /></div>` : ''}
       </div>
-      <div class="achievement-title">${cert.title}</div>
-      <div class="achievement-sub">${cert.issuer} · ${cert.year}</div>
+      <div class="certificate-body">
+        <div class="certificate-title">${cert.title}</div>
+        <div class="certificate-issuer">${cert.issuer} · ${cert.year}</div>
+        ${
+          cert.verificationLink
+            ? `<a href="${cert.verificationLink}" target="_blank" rel="noopener" class="certificate-link" onclick="event.stopPropagation()">
+                <span data-en="Verify Certificate" data-ar="التحقق من الشهادة">Verify Certificate</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>`
+            : ''
+        }
+      </div>
     </div>
   `;
 }

@@ -59,6 +59,32 @@
   max-width: 480px;
 }
 
+/* ===================================
+   Hero Expertise Badges
+   =================================== */
+.hero-expertise {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.expertise-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--accent-cyan);
+  transition: all var(--transition-fast);
+}
+
+.expertise-badge:hover {
+  border-color: var(--border-hover);
+  background: rgba(34, 211, 238, 0.14);
+}
+
 .hero-actions {
   display: flex;
   gap: 14px;
@@ -324,6 +350,57 @@
   padding: 80px 0;
 }
 
+.skills-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.skill-tab-btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.skill-tab-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.skill-tab-btn.active {
+  background: var(--gradient-main);
+  border-color: transparent;
+  color: #fff;
+}
+
+.skills-tab-desc {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  margin-bottom: 24px;
+}
+
+.skills-tab-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.skills-tab-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -492,7 +569,9 @@
 }
 
 /* ===================================
-   Achievements / Certificates preview
+   Achievements preview (homepage)
+   الكروت نفسها (.certificate-card وما فيها) بقت مكوّن مشترك
+   معرّف في main.css علشان تتستخدم هنا وفي صفحة projects.html
    =================================== */
 .achievements-section {
   padding: 80px 0;
@@ -503,43 +582,6 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-top: 40px;
-  position: relative;
-}
-
-.achievement-item {
-  text-align: center;
-  position: relative;
-}
-
-.achievement-circle {
-  width: 100px;
-  height: 70px;
-  margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 10px;
-}
-
-.achievement-circle img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.achievement-title {
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.achievement-sub {
-  font-size: 11px;
-  color: var(--text-muted);
 }
 
 /* ===================================
@@ -596,84 +638,7 @@
   font-size: 14px;
   font-weight: 600;
 }
-/* ===================================
-   Hero Expertise Badges
-   =================================== */
-.hero-expertise {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 28px;
-}
 
-.expertise-badge {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-  background: rgba(34, 211, 238, 0.08);
-  border: 1px solid var(--border-color);
-  color: var(--accent-cyan);
-  transition: all var(--transition-fast);
-}
-
-.expertise-badge:hover {
-  border-color: var(--border-hover);
-  background: rgba(34, 211, 238, 0.14);
-}
-/* ===================================
-   Skills Tabs
-   =================================== */
-.skills-tabs {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-
-.skill-tab-btn {
-  padding: 10px 20px;
-  border-radius: var(--radius-pill);
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-}
-
-.skill-tab-btn:hover {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
-}
-
-.skill-tab-btn.active {
-  background: var(--gradient-main);
-  border-color: transparent;
-  color: #fff;
-}
-
-.skills-tab-desc {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 22px 24px;
-  margin-bottom: 24px;
-}
-
-.skills-tab-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.skills-tab-text {
-  font-size: 14px;
-  color: var(--text-secondary);
-  max-width: 640px;
-}
 /* ===================================
    Responsive (سيتم استكمالها في responsive.css)
    =================================== */

@@ -13,6 +13,10 @@
     margin-right: auto;
   }
 
+  .hero-expertise {
+    justify-content: center;
+  }
+
   .hero-actions {
     justify-content: center;
   }
@@ -55,6 +59,10 @@
   .all-projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .certificates-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ===================================
@@ -64,9 +72,7 @@
   .nav-links {
     display: none;
   }
-  .hero-expertise {
-  justify-content: center;
-  }
+
   .nav-toggle-mobile {
     display: block;
   }
@@ -92,6 +98,20 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .skills-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+  .skills-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .skills-tab-desc {
+    padding: 18px;
+  }
+
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -101,7 +121,7 @@
   }
 
   .achievements-row {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .form-row {
@@ -116,23 +136,13 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
   .certificates-grid {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 
-.certificate-card {
-  padding: 16px 12px;
-}
-
-.certificate-icon {
-  height: 60px;
-}
-
-.certificate-title {
-  font-size: 13px;
-}
-.all-projects-grid {
+  .all-projects-grid {
     grid-template-columns: 1fr;
   }
 
@@ -162,14 +172,6 @@
 }
 
 @media (max-width: 640px) {
-  .skills-tabs {
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
-}
- .skills-tabs::-webkit-scrollbar { display: none; }
- .skills-tab-desc { padding: 18px; }
   .details-hero {
     padding: 100px 0 30px;
   }

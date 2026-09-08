@@ -73,9 +73,8 @@
 
 /* ===================================
    شبكة الشهادات (صفحة كل المشاريع، تاب الشهادات)
-   =================================== */
-/* ===================================
-   شبكة الشهادات (صفحة كل المشاريع، تاب الشهادات)
+   كارت الشهادة نفسه (.certificate-card وما فيها) معرّف في main.css
+   كمكوّن مشترك مع قسم Achievements في الصفحة الرئيسية
    =================================== */
 .certificates-section {
   padding: 40px 0 100px;
@@ -83,59 +82,8 @@
 
 .certificates-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.certificate-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  text-align: center;
-  transition: all var(--transition-base);
-  cursor: pointer;
-}
-
-.certificate-card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-}
-
-/* اللوجو بقى مربع بره دائرة، وبيتناسب بره ما يتقصش */
-.certificate-icon {
-  width: 100%;
-  height: 90px;
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.certificate-icon img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.certificate-title {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.certificate-issuer {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.certificate-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--accent-cyan);
-  margin-top: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 /* ===================================
