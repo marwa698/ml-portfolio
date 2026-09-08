@@ -64,7 +64,9 @@
   .nav-links {
     display: none;
   }
-
+  .hero-expertise {
+  justify-content: center;
+  }
   .nav-toggle-mobile {
     display: block;
   }

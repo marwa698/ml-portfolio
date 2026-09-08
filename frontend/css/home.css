@@ -596,7 +596,31 @@
   font-size: 14px;
   font-weight: 600;
 }
+/* ===================================
+   Hero Expertise Badges
+   =================================== */
+.hero-expertise {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
 
+.expertise-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--accent-cyan);
+  transition: all var(--transition-fast);
+}
+
+.expertise-badge:hover {
+  border-color: var(--border-hover);
+  background: rgba(34, 211, 238, 0.14);
+}
 /* ===================================
    Responsive (سيتم استكمالها في responsive.css)
    =================================== */
