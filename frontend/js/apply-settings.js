@@ -82,7 +82,7 @@ function applySocialLink(platform, url) {
 
 // بيبني رابط واتساب فيه رسالة جاهزة، مستخدم في كل أيقونات/روابط الواتساب بالموقع
 function buildWhatsappLink(url) {
-  const prefillMessage = "Hi Marwa! I found your portfolio and I'd like to talk about a project. / مرحبًا مروة! شفت البورتوفوليو بتاعك وحابب أتكلم معاكي عن مشروع.";
+  const prefillMessage = "Hi Marwa! I found your portfolio and I'd like to talk about a project.";
   const separator = url.includes('?') ? '&' : '?';
   return `${url}${separator}text=${encodeURIComponent(prefillMessage)}`;
 }
