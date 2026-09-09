@@ -31,6 +31,21 @@ async function applySettings() {
   applySocialLink('whatsapp', links.whatsapp);
   applySocialLink('instagram', links.instagram);
 
+  // رابط واتساب برسالة جاهزة في قسم "Get in touch" بالصفحة الرئيسية
+  // (منفصل عن أيقونة data-social="whatsapp" العادية، عشان يفتح شات فيه رسالة مكتوبة جاهزة)
+  const whatsappContactEl = document.querySelector('[data-whatsapp-contact]');
+  if (whatsappContactEl) {
+    const row = whatsappContactEl.closest('.contact-info-row');
+    if (links.whatsapp) {
+      const prefillMessage = "Hi Marwa! I found your portfolio and I'd like to talk about a project. / مرحبًا مروة! شفت البورتوفوليو بتاعك وحابب أتكلم معاكي عن مشروع.";
+      const separator = links.whatsapp.includes('?') ? '&' : '?';
+      whatsappContactEl.href = `${links.whatsapp}${separator}text=${encodeURIComponent(prefillMessage)}`;
+      if (row) row.style.display = '';
+    } else if (row) {
+      row.style.display = 'none';
+    }
+  }
+
   // الصورة الشخصية - لو مرفوعة من لوحة الأدمن، تظهر بدل الـ placeholder
   // لو مش مرفوعة، نعرض رسالة واضحة بدل ما تفضل الصفحة على حالة "جارِ التحميل"
   const photoEl = document.getElementById('hero-photo');
