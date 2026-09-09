@@ -32,14 +32,11 @@ async function applySettings() {
   applySocialLink('instagram', links.instagram);
 
   // رابط واتساب برسالة جاهزة في قسم "Get in touch" بالصفحة الرئيسية
-  // (منفصل عن أيقونة data-social="whatsapp" العادية، عشان يفتح شات فيه رسالة مكتوبة جاهزة)
   const whatsappContactEl = document.querySelector('[data-whatsapp-contact]');
   if (whatsappContactEl) {
     const row = whatsappContactEl.closest('.contact-info-row');
     if (links.whatsapp) {
-      const prefillMessage = "Hi Marwa! I found your portfolio and I'd like to talk about a project. / مرحبًا مروة! شفت البورتوفوليو بتاعك وحابب أتكلم معاكي عن مشروع.";
-      const separator = links.whatsapp.includes('?') ? '&' : '?';
-      whatsappContactEl.href = `${links.whatsapp}${separator}text=${encodeURIComponent(prefillMessage)}`;
+      whatsappContactEl.href = buildWhatsappLink(links.whatsapp);
       if (row) row.style.display = '';
     } else if (row) {
       row.style.display = 'none';
@@ -74,13 +71,20 @@ function applySocialLink(platform, url) {
   const els = document.querySelectorAll(`[data-social="${platform}"]`);
   els.forEach((el) => {
     if (url) {
-      el.href = url;
+      el.href = platform === 'whatsapp' ? buildWhatsappLink(url) : url;
       el.style.display = '';
     } else {
       // لو الرابط مش متضاف من لوحة الأدمن، نخبي الأيقونة بدل ما تروح لرابط فاضي
       el.style.display = 'none';
     }
   });
+}
+
+// بيبني رابط واتساب فيه رسالة جاهزة، مستخدم في كل أيقونات/روابط الواتساب بالموقع
+function buildWhatsappLink(url) {
+  const prefillMessage = "Hi Marwa! I found your portfolio and I'd like to talk about a project. / مرحبًا مروة! شفت البورتوفوليو بتاعك وحابب أتكلم معاكي عن مشروع.";
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}text=${encodeURIComponent(prefillMessage)}`;
 }
 
 document.addEventListener('DOMContentLoaded', applySettings);
