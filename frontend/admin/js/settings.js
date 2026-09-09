@@ -1,6 +1,15 @@
 requireAdminAuth();
 renderAdminSidebar('settings');
 
+// خريطة بين اسم التصنيف الحقيقي (زي ما بيتخزن في قاعدة البيانات)
+// وبين الـ id بتاع حقول الفورم (مش ممكن نستخدم مسافة في id)
+const SKILL_CATEGORY_FIELD_MAP = {
+  'Technical': 'technical',
+  'Soft Skills': 'softskills',
+  'Tools': 'tools',
+  'Languages': 'languages',
+};
+
 // تحميل الإعدادات الحالية وملء الحقول
 async function loadSettings() {
   try {
@@ -32,6 +41,16 @@ async function loadSettings() {
     document.getElementById('settings-linkedin').value = links.linkedin || '';
     document.getElementById('settings-whatsapp').value = links.whatsapp || '';
     document.getElementById('settings-instagram').value = links.instagram || '';
+
+    // أوصاف تابات المهارات (بتيجي من الباك إند كـ object عادي، الـ Map بتتحول تلقائي في الـ JSON)
+    const skillDescs = settings.skillCategoryDescriptions || {};
+    Object.entries(SKILL_CATEGORY_FIELD_MAP).forEach(([category, fieldSlug]) => {
+      const entry = skillDescs[category] || {};
+      const enInput = document.getElementById(`skilldesc-${fieldSlug}-en`);
+      const arInput = document.getElementById(`skilldesc-${fieldSlug}-ar`);
+      if (enInput) enInput.value = entry.en || '';
+      if (arInput) arInput.value = entry.ar || '';
+    });
   } catch (error) {
     showAdminToast('Failed to load settings', 'error');
   }
@@ -138,6 +157,35 @@ document.getElementById('settings-social-form').addEventListener('submit', async
   } finally {
     btn.disabled = false;
     btn.textContent = 'Save social links';
+  }
+});
+
+// حفظ أوصاف تابات المهارات
+document.getElementById('settings-skills-desc-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const btn = document.getElementById('settings-skills-desc-save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+
+  const skillCategoryDescriptions = {};
+  Object.entries(SKILL_CATEGORY_FIELD_MAP).forEach(([category, fieldSlug]) => {
+    skillCategoryDescriptions[category] = {
+      en: document.getElementById(`skilldesc-${fieldSlug}-en`).value,
+      ar: document.getElementById(`skilldesc-${fieldSlug}-ar`).value,
+    };
+  });
+
+  try {
+    await adminApiRequest('/settings', {
+      method: 'PUT',
+      body: JSON.stringify({ skillCategoryDescriptions }),
+    });
+    showAdminToast('Skills descriptions saved — refresh the portfolio to see the change');
+  } catch (error) {
+    showAdminToast(error.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save skills descriptions';
   }
 });
 

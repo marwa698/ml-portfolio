@@ -22,7 +22,16 @@ const getSettings = async (req, res) => {
 const updateSettings = async (req, res) => {
   try {
     const settings = await getOrCreateSettings();
-    const { email, phone, location, github, linkedin, whatsapp, instagram } = req.body;
+    const {
+      email,
+      phone,
+      location,
+      github,
+      linkedin,
+      whatsapp,
+      instagram,
+      skillCategoryDescriptions,
+    } = req.body;
 
     settings.email = email ?? settings.email;
     settings.phone = phone ?? settings.phone;
@@ -32,6 +41,11 @@ const updateSettings = async (req, res) => {
     settings.socialLinks.linkedin = linkedin ?? settings.socialLinks.linkedin;
     settings.socialLinks.whatsapp = whatsapp ?? settings.socialLinks.whatsapp;
     settings.socialLinks.instagram = instagram ?? settings.socialLinks.instagram;
+
+    // بتيجي كـ object عادي من الفورم (مش Map)، Mongoose بيحولها لـ Map تلقائي
+    if (skillCategoryDescriptions !== undefined) {
+      settings.skillCategoryDescriptions = skillCategoryDescriptions;
+    }
 
     const updated = await settings.save();
     res.json(updated);

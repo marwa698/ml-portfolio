@@ -9,7 +9,8 @@ const SKILL_CATEGORY_LABELS_AR = {
   'Languages': 'لغات',
 };
 
-const SKILL_CATEGORY_DESC = {
+// نص افتراضي (fallback) لو الأدمن لسه ما كتبتش وصف مخصص من صفحة Settings
+const SKILL_CATEGORY_DEFAULT_DESC = {
   'Technical': {
     en: 'Core machine learning, deep learning and applied AI techniques I work with.',
     ar: 'أساسيات تعلم الآلة والتعلم العميق وتقنيات الذكاء الاصطناعي التطبيقية التي أعمل بها.',
@@ -29,13 +30,16 @@ const SKILL_CATEGORY_DESC = {
 };
 
 let allSkillsCache = [];
+let skillCategoryDescCache = {};
 let activeSkillCategory = null;
 
 async function renderSkills() {
   const gridContainer = document.getElementById('skills-grid');
   if (!gridContainer) return;
 
-  allSkillsCache = await fetchSkills();
+  const [skills, settings] = await Promise.all([fetchSkills(), fetchSettings()]);
+  allSkillsCache = skills;
+  skillCategoryDescCache = (settings && settings.skillCategoryDescriptions) || {};
 
   const tabsContainer = document.getElementById('skills-tabs');
   const descContainer = document.getElementById('skills-tab-desc');
@@ -59,6 +63,12 @@ function getOrderedCategories(skills) {
   const ordered = SKILL_CATEGORY_ORDER.filter((c) => present.includes(c));
   const extra = present.filter((c) => !SKILL_CATEGORY_ORDER.includes(c));
   return [...ordered, ...extra];
+}
+
+function getCategoryDesc(category) {
+  const custom = skillCategoryDescCache[category];
+  if (custom && (custom.en || custom.ar)) return custom;
+  return SKILL_CATEGORY_DEFAULT_DESC[category] || null;
 }
 
 function renderSkillTabs(categories) {
@@ -99,7 +109,7 @@ function renderSkillPanel(category) {
   const gridContainer = document.getElementById('skills-grid');
   if (!gridContainer) return;
 
-  const info = SKILL_CATEGORY_DESC[category];
+  const info = getCategoryDesc(category);
   const arLabel = SKILL_CATEGORY_LABELS_AR[category] || category;
 
   if (descContainer) {
@@ -107,7 +117,7 @@ function renderSkillPanel(category) {
       <h3 class="skills-tab-title" data-en="${category}" data-ar="${arLabel}">${category}</h3>
       ${
         info
-          ? `<p class="skills-tab-text" data-en="${info.en}" data-ar="${info.ar}">${info.en}</p>`
+          ? `<p class="skills-tab-text" data-en="${info.en || ''}" data-ar="${info.ar || ''}">${info.en || ''}</p>`
           : ''
       }
     `;

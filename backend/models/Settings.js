@@ -34,6 +34,19 @@ const settingsSchema = new mongoose.Schema(
       whatsapp: { type: String, default: '' },
       instagram: { type: String, default: '' },
     },
+    // الوصف اللي بيظهر تحت كل تاب في قسم Skills بالبورتوفوليو
+    // مفتاح كل عنصر هو اسم التصنيف بالظبط (Technical, Soft Skills, Tools, Languages)
+    skillCategoryDescriptions: {
+      type: Map,
+      of: new mongoose.Schema(
+        {
+          en: { type: String, default: '' },
+          ar: { type: String, default: '' },
+        },
+        { _id: false }
+      ),
+      default: {},
+    },
   },
   {
     timestamps: true,
