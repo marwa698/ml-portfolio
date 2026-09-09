@@ -29,7 +29,7 @@ function renderCertificateCard(cert) {
         <div class="certificate-title">${cert.title}</div>
         <div class="certificate-issuer">${cert.issuer} · ${cert.year}</div>
         <div class="certificate-footer">
-          ${logoUrl ? `<img src="${logoUrl}" alt="${cert.issuer}" class="certificate-logo" />` : '<span></span>'}
+          ${logoUrl ? `<div class="certificate-logo-wrap"><img src="${logoUrl}" alt="${cert.issuer}" /></div>` : '<span></span>'}
           ${
             cert.verificationLink
               ? `<a href="${cert.verificationLink}" target="_blank" rel="noopener" class="certificate-link" onclick="event.stopPropagation()">
