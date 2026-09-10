@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/home.css" />
   <link rel="stylesheet" href="css/education.css" />
+  <link rel="stylesheet" href="css/services.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
@@ -28,6 +29,7 @@
         <a href="#education" data-en="Education" data-ar="التعليم">Education</a>
         <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
         <a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a>
+        <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
         <a href="#achievements" data-en="Certificates" data-ar="الشهادات">Certificates</a>
         <a href="contact.html" data-en="Contact" data-ar="تواصل">Contact</a>
       </nav>
@@ -68,6 +70,11 @@
     <div class="side-nav-item" data-section="projects">
       <div class="side-nav-dot"></div>
       <span class="side-nav-label" data-en="Projects" data-ar="المشاريع">Projects</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="services">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Services" data-ar="الخدمات">Services</span>
     </div>
     <div class="side-nav-line"></div>
     <div class="side-nav-item" data-section="achievements">
@@ -281,6 +288,122 @@
 
       <div class="projects-grid" id="projects-grid">
         <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Services Section ============ -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <span class="section-label" data-en="What I Offer" data-ar="ما الذي أقدمه">What I Offer</span>
+      <h2 class="section-title" data-en="Services" data-ar="الخدمات">Services</h2>
+      <p class="page-subtitle" style="margin: 0;" data-en="Turning ideas into intelligent solutions. I help businesses and individuals build practical AI solutions from idea to deployment, with clean, scalable, and modern approaches." data-ar="أحوّل الأفكار إلى حلول ذكية، وأساعد الشركات والأفراد على بناء حلول عملية بالذكاء الاصطناعي بدءًا من الفكرة وحتى الـDeployment، باستخدام أساليب حديثة وقابلة للتوسع.">
+        Turning ideas into intelligent solutions. I help businesses and individuals build practical AI solutions from idea to deployment, with clean, scalable, and modern approaches.
+      </p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><i class="fa-solid fa-chart-simple"></i></div>
+            <a href="contact.html" class="service-arrow-btn" aria-label="Get in touch"><i class="fa-solid fa-arrow-up-right"></i></a>
+          </div>
+          <h3 class="service-title" data-en="Machine Learning Solutions" data-ar="حلول تعلم الآلة">Machine Learning Solutions</h3>
+          <p class="service-desc" data-en="Build predictive and classification models for real business problems." data-ar="بناء نماذج تنبؤية وتصنيفية لحل مشكلات أعمال حقيقية.">Build predictive and classification models for real business problems.</p>
+          <div class="service-tags">
+            <span class="service-tag tag-cyan">Scikit-learn</span>
+            <span class="service-tag tag-purple">XGBoost</span>
+            <span class="service-tag tag-pink">Random Forest</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+            <a href="contact.html" class="service-arrow-btn" aria-label="Get in touch"><i class="fa-solid fa-arrow-up-right"></i></a>
+          </div>
+          <h3 class="service-title" data-en="Deep Learning Solutions" data-ar="حلول التعلم العميق">Deep Learning Solutions</h3>
+          <p class="service-desc" data-en="Develop neural-network solutions for complex image and pattern recognition tasks." data-ar="تطوير حلول بالشبكات العصبية لمهام التعرف المعقدة على الصور والأنماط.">Develop neural-network solutions for complex image and pattern recognition tasks.</p>
+          <div class="service-tags">
+            <span class="service-tag tag-cyan">TensorFlow</span>
+            <span class="service-tag tag-purple">Keras</span>
+            <span class="service-tag tag-pink">PyTorch</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><i class="fa-solid fa-comment-dots"></i></div>
+            <a href="contact.html" class="service-arrow-btn" aria-label="Get in touch"><i class="fa-solid fa-arrow-up-right"></i></a>
+          </div>
+          <h3 class="service-title" data-en="NLP Solutions" data-ar="حلول معالجة اللغة الطبيعية">NLP Solutions</h3>
+          <p class="service-desc" data-en="Build intelligent text systems for classification, emotion analysis, and RAG." data-ar="بناء أنظمة نصية ذكية للتصنيف وتحليل المشاعر وتطبيقات RAG.">Build intelligent text systems for classification, emotion analysis, and RAG.</p>
+          <div class="service-tags">
+            <span class="service-tag tag-cyan">Transformers</span>
+            <span class="service-tag tag-purple">AraBERT</span>
+            <span class="service-tag tag-pink">RAG</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><i class="fa-solid fa-camera"></i></div>
+            <a href="contact.html" class="service-arrow-btn" aria-label="Get in touch"><i class="fa-solid fa-arrow-up-right"></i></a>
+          </div>
+          <h3 class="service-title" data-en="Computer Vision" data-ar="الرؤية الحاسوبية">Computer Vision</h3>
+          <p class="service-desc" data-en="Develop image-based AI solutions for classification, recognition, and visual analysis." data-ar="تطوير حلول ذكاء اصطناعي قائمة على الصور للتصنيف والتعرف والتحليل البصري.">Develop image-based AI solutions for classification, recognition, and visual analysis.</p>
+          <div class="service-tags">
+            <span class="service-tag tag-cyan">CNN</span>
+            <span class="service-tag tag-purple">OpenCV</span>
+            <span class="service-tag tag-pink">Grad-CAM</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><i class="fa-solid fa-cubes"></i></div>
+            <a href="contact.html" class="service-arrow-btn" aria-label="Get in touch"><i class="fa-solid fa-arrow-up-right"></i></a>
+          </div>
+          <h3 class="service-title" data-en="AI Application Development" data-ar="تطوير تطبيقات الذكاء الاصطناعي">AI Application Development</h3>
+          <p class="service-desc" data-en="Turn trained models into practical applications, APIs, dashboards, and interfaces." data-ar="تحويل النماذج المدرَّبة إلى تطبيقات عملية وواجهات برمجية ولوحات تحكم وواجهات استخدام.">Turn trained models into practical applications, APIs, dashboards, and interfaces.</p>
+          <div class="service-tags">
+            <span class="service-tag tag-cyan">FastAPI</span>
+            <span class="service-tag tag-purple">Streamlit</span>
+            <span class="service-tag tag-pink">React</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <a href="contact.html" class="service-arrow-btn" aria-label="Get in touch"><i class="fa-solid fa-arrow-up-right"></i></a>
+          </div>
+          <h3 class="service-title" data-en="Model Explainability" data-ar="تفسير النماذج">Model Explainability</h3>
+          <p class="service-desc" data-en="Make AI predictions easier to understand with transparent explanations." data-ar="تسهيل فهم تنبؤات الذكاء الاصطناعي من خلال تفسيرات شفافة.">Make AI predictions easier to understand with transparent explanations.</p>
+          <div class="service-tags">
+            <span class="service-tag tag-cyan">SHAP</span>
+            <span class="service-tag tag-purple">Grad-CAM</span>
+            <span class="service-tag tag-pink">Explainable AI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-cta">
+        <div class="services-cta-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div class="services-cta-text">
+          <h3 data-en="Have a real problem?" data-ar="عندك مشكلة حقيقية؟">Have a real problem?</h3>
+          <p class="text-gradient" data-en="Let's build an intelligent solution." data-ar="لنبني حلاً ذكيًا.">Let's build an intelligent solution.</p>
+        </div>
+        <ul class="services-cta-checklist">
+          <li><i class="fa-solid fa-check"></i> <span data-en="Clear communication" data-ar="تواصل واضح">Clear communication</span></li>
+          <li><i class="fa-solid fa-check"></i> <span data-en="Modern technologies" data-ar="تقنيات حديثة">Modern technologies</span></li>
+          <li><i class="fa-solid fa-check"></i> <span data-en="Focus on real impact" data-ar="التركيز على الأثر الحقيقي">Focus on real impact</span></li>
+        </ul>
+        <div class="services-cta-action">
+          <a href="contact.html" class="btn btn-primary" data-en="Let's Work Together" data-ar="لنعمل معًا">
+            Let's Work Together <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <div class="services-cta-breadcrumb" data-en="Ideas → Models → Real Impact" data-ar="أفكار ← نماذج ← أثر حقيقي">Ideas → Models → Real Impact</div>
+        </div>
       </div>
     </div>
   </section>
