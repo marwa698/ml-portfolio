@@ -154,6 +154,33 @@
     padding: 7px 14px;
     font-size: 12px;
   }
+
+  .edu-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .edu-dot-col {
+    display: none;
+  }
+
+  .edu-period {
+    text-align: left;
+    padding-top: 0;
+  }
+
+  [dir='rtl'] .edu-period {
+    text-align: right;
+  }
+
+  .edu-card {
+    flex-direction: column;
+  }
+
+  .edu-logo {
+    width: 56px;
+    height: 56px;
+  }
 }
 
 /* ===================================

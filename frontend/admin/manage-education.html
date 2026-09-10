@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Education | Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="admin-body">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1 class="admin-page-title">Education</h1>
+        <p class="admin-page-sub">Manage the degrees, courses and training shown in the Education section</p>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <button class="btn btn-primary" id="add-education-btn">
+          <i class="fa-solid fa-plus"></i> Add entry
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Institution</th>
+            <th>Program</th>
+            <th>Type</th>
+            <th>Period</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="education-table-body">
+          <tr><td colspan="5" class="admin-empty">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="education-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title" id="education-modal-title">Add entry</h3>
+      <button class="modal-close-btn" id="education-modal-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="education-form">
+      <input type="hidden" id="education-id" />
+
+      <div class="modal-form-group">
+        <label>Institution name</label>
+        <input type="text" id="education-institution" class="form-input" placeholder="Helwan International Technological University (HITU)" required />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Program / Course title</label>
+        <input type="text" id="education-program" class="form-input" placeholder="B.Sc. in Artificial Intelligence" required />
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Period (shown on the timeline)</label>
+          <input type="text" id="education-period" class="form-input" placeholder="2024 – 2028 or 2026" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Type</label>
+          <select id="education-type" class="form-input">
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Online Course">Online Course</option>
+            <option value="Professional Training">Professional Training</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-form-group">
+        <label>Status (optional small note under the period)</label>
+        <input type="text" id="education-status" class="form-input" placeholder="Expected Graduation Jun 2028 or Completed" />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Description</label>
+        <textarea id="education-description" class="form-textarea" placeholder="Short description of what this covered"></textarea>
+      </div>
+
+      <div class="modal-form-group">
+        <label>Verification / course link (optional)</label>
+        <input type="url" id="education-link" class="form-input" placeholder="https://..." />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Institution logo</label>
+        <input type="file" id="education-logo-input" accept="image/*" />
+        <img id="education-logo-preview" src="" alt="" style="display:none;max-width:100px;max-height:60px;object-fit:contain;margin-top:10px;border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:6px;background:#fff;" onerror="this.style.display='none'" />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Display order (within the timeline)</label>
+        <input type="number" id="education-order" class="form-input" placeholder="0" value="0" />
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="education-cancel-btn">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="education-submit-btn">Save entry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/theme-toggle.js"></script>
+<script src="../js/api.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-sidebar.js"></script>
+<script src="js/admin-toast.js"></script>
+<script src="js/manage-education.js"></script>
+</body>
+</html>

@@ -54,6 +54,14 @@ async function fetchSettings() {
   return await apiGet('/settings');
 }
 
+async function fetchEducation() {
+  return (await apiGet('/education')) || [];
+}
+
+async function fetchEducationById(id) {
+  return await apiGet(`/education/${id}`);
+}
+
 async function sendContactMessage(formData) {
   return await apiPost('/messages', formData);
 }

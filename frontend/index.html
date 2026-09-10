@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/education.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
@@ -24,6 +25,7 @@
       <nav class="nav-links" id="nav-links">
         <a href="#home" class="active" data-en="Home" data-ar="الرئيسية">Home</a>
         <a href="#about" data-en="About" data-ar="نبذة">About</a>
+        <a href="#education" data-en="Education" data-ar="التعليم">Education</a>
         <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
         <a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a>
         <a href="#achievements" data-en="Certificates" data-ar="الشهادات">Certificates</a>
@@ -51,6 +53,11 @@
     <div class="side-nav-item" data-section="about">
       <div class="side-nav-dot"></div>
       <span class="side-nav-label" data-en="About" data-ar="نبذة">About</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="education">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Education" data-ar="التعليم">Education</span>
     </div>
     <div class="side-nav-line"></div>
     <div class="side-nav-item" data-section="skills">
@@ -226,6 +233,20 @@
     </div>
   </section>
 
+  <!-- ============ Education Section ============ -->
+  <section id="education" class="education-section">
+    <div class="container">
+      <span class="section-label" data-en="My Journey" data-ar="مسيرتي">My Journey</span>
+      <h2 class="section-title" data-html data-en="<span class='text-gradient'>Education</span> & continuous learning" data-ar="<span class='text-gradient'>التعليم</span> والتعلم المستمر">
+        <span class="text-gradient">Education</span> & continuous learning
+      </h2>
+
+      <div class="edu-timeline" id="education-timeline">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ Skills Section ============ -->
   <section id="skills" class="skills-section">
     <div class="container">
@@ -370,6 +391,7 @@
   <script src="js/theme-toggle.js"></script>
   <script src="js/lang-toggle.js"></script>
   <script src="js/apply-settings.js"></script>
+  <script src="js/render-education.js"></script>
   <script src="js/render-skills.js"></script>
   <script src="js/render-projects.js"></script>
   <script src="js/render-certificates.js"></script>

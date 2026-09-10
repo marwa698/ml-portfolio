@@ -9,6 +9,7 @@ function renderAdminSidebar(activePage) {
     { id: 'dashboard', href: 'dashboard.html', icon: 'fa-gauge', label: 'Dashboard' },
     { id: 'projects', href: 'manage-projects.html', icon: 'fa-diagram-project', label: 'Projects' },
     { id: 'certificates', href: 'manage-certificates.html', icon: 'fa-certificate', label: 'Certificates' },
+    { id: 'education', href: 'manage-education.html', icon: 'fa-graduation-cap', label: 'Education' },
     { id: 'skills', href: 'manage-skills.html', icon: 'fa-layer-group', label: 'Skills' },
     { id: 'messages', href: 'manage-messages.html', icon: 'fa-envelope', label: 'Messages' },
     { id: 'settings', href: 'settings.html', icon: 'fa-gear', label: 'Settings' },
