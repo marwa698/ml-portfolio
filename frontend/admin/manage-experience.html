@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Work Experience | Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="admin-body">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1 class="admin-page-title">Work Experience</h1>
+        <p class="admin-page-sub">Manage the internships, trainings and jobs shown in the Work Experience section</p>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <button class="btn btn-primary" id="add-experience-btn">
+          <i class="fa-solid fa-plus"></i> Add entry
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Organization</th>
+            <th>Type</th>
+            <th>Period</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="experience-table-body">
+          <tr><td colspan="5" class="admin-empty">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="experience-modal">
+  <div class="modal-box" style="max-width:640px;">
+    <div class="modal-header">
+      <h3 class="modal-title" id="experience-modal-title">Add entry</h3>
+      <button class="modal-close-btn" id="experience-modal-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="experience-form">
+      <input type="hidden" id="experience-id" />
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Title (English)</label>
+          <input type="text" id="experience-titleEn" class="form-input" placeholder="Backend Developer Intern" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Title (Arabic)</label>
+          <input type="text" id="experience-titleAr" class="form-input" placeholder="متدرب باك إند" dir="rtl" required />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Organization (English)</label>
+          <input type="text" id="experience-organizationEn" class="form-input" placeholder="Information Technology Institute (ITI)" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Organization (Arabic)</label>
+          <input type="text" id="experience-organizationAr" class="form-input" placeholder="معهد تكنولوجيا المعلومات (ITI)" dir="rtl" required />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Employment type</label>
+          <select id="experience-employmentType" class="form-input">
+            <option value="internship">Internship</option>
+            <option value="training">Training Program</option>
+            <option value="job">Job</option>
+            <option value="freelance">Freelance</option>
+          </select>
+        </div>
+        <div class="modal-form-group">
+          <label>Location type</label>
+          <select id="experience-locationType" class="form-input">
+            <option value="remote">Remote</option>
+            <option value="onsite">Onsite</option>
+            <option value="online">Online</option>
+            <option value="hybrid">Hybrid</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Period (English)</label>
+          <input type="text" id="experience-periodEn" class="form-input" placeholder="Sep 2024 – Present" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Period (Arabic)</label>
+          <input type="text" id="experience-periodAr" class="form-input" placeholder="سبتمبر 2024 – حتى الآن" dir="rtl" required />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Status note (English) — optional</label>
+          <input type="text" id="experience-statusEn" class="form-input" placeholder="Ongoing" />
+        </div>
+        <div class="modal-form-group">
+          <label>Status note (Arabic) — optional</label>
+          <input type="text" id="experience-statusAr" class="form-input" placeholder="جارية حاليًا" dir="rtl" />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Short highlight (English) — optional</label>
+          <input type="text" id="experience-highlightEn" class="form-input" placeholder="Building real systems" />
+        </div>
+        <div class="modal-form-group">
+          <label>Short highlight (Arabic) — optional</label>
+          <input type="text" id="experience-highlightAr" class="form-input" placeholder="بناء أنظمة حقيقية" dir="rtl" />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>About (English)</label>
+          <textarea id="experience-descriptionEn" class="form-textarea" placeholder="Currently interning in the Backend Development track..." required></textarea>
+        </div>
+        <div class="modal-form-group">
+          <label>About (Arabic)</label>
+          <textarea id="experience-descriptionAr" class="form-textarea" placeholder="أتدرب حاليًا في مسار تطوير الباك إند..." dir="rtl" required></textarea>
+        </div>
+      </div>
+
+      <div class="modal-form-group">
+        <label>What I Did (bullet points)</label>
+        <div id="experience-bullets-list"></div>
+        <button type="button" class="btn btn-outline" id="add-bullet-btn" style="margin-top:8px;">
+          <i class="fa-solid fa-plus"></i> Add point
+        </button>
+      </div>
+
+      <div class="modal-form-group">
+        <label>Technologies (comma separated)</label>
+        <input type="text" id="experience-technologies" class="form-input" placeholder="Node.js, Express.js, MongoDB, REST API, Git" />
+      </div>
+
+      <div class="modal-form-group">
+        <label>External link (optional)</label>
+        <input type="url" id="experience-link" class="form-input" placeholder="https://..." />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Organization logo</label>
+        <input type="file" id="experience-logo-input" accept="image/*" />
+        <img id="experience-logo-preview" src="" alt="" style="display:none;max-width:100px;max-height:60px;object-fit:contain;margin-top:10px;border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:6px;background:#fff;" onerror="this.style.display='none'" />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Display order (within the timeline)</label>
+        <input type="number" id="experience-order" class="form-input" placeholder="0" value="0" />
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="experience-cancel-btn">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="experience-submit-btn">Save entry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/theme-toggle.js"></script>
+<script src="../js/api.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-sidebar.js"></script>
+<script src="js/admin-toast.js"></script>
+<script src="js/manage-experience.js"></script>
+</body>
+</html>

@@ -30,3 +30,8 @@ const uploadEducationLogo = upload.single('logo');
 module.exports = upload;
 module.exports.uploadCertificateFiles = uploadCertificateFiles;
 module.exports.uploadEducationLogo = uploadEducationLogo;
+
+// نسخة خاصة لعنصر خبرة واحد: لوجو الجهة بس (ملف واحد)، بنفس منطق الـ Education
+const uploadExperienceLogo = upload.single('logo');
+
+module.exports.uploadExperienceLogo = uploadExperienceLogo;

@@ -61,7 +61,13 @@ async function fetchEducation() {
 async function fetchEducationById(id) {
   return await apiGet(`/education/${id}`);
 }
+async function fetchExperience() {
+  return (await apiGet('/experience')) || [];
+}
 
+async function fetchExperienceById(id) {
+  return await apiGet(`/experience/${id}`);
+}
 async function sendContactMessage(formData) {
   return await apiPost('/messages', formData);
 }
