@@ -35,3 +35,6 @@ module.exports.uploadEducationLogo = uploadEducationLogo;
 const uploadExperienceLogo = upload.single('logo');
 
 module.exports.uploadExperienceLogo = uploadExperienceLogo;
+
+const uploadAchievementLogo = upload.single('logo');
+module.exports.uploadAchievementLogo = uploadAchievementLogo;

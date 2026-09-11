@@ -85,3 +85,10 @@ function buildImageUrl(filename) {
   const base = API_BASE_URL.replace('/api', '');
   return `${base}/uploads/${filename}`;
 }
+
+async function fetchAchievements() {
+  return (await apiGet('/achievements')) || [];
+}
+async function fetchAchievementById(id) {
+  return await apiGet(`/achievements/${id}`);
+}

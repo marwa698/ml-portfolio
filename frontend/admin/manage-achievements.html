@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Achievements | Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="admin-body">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1 class="admin-page-title">Achievements</h1>
+        <p class="admin-page-sub">Manage the awards, selections and milestones shown in the Achievements section</p>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <button class="icon-toggle" id="theme-toggle-btn" aria-label="Toggle theme">☀️</button>
+        <button class="btn btn-primary" id="add-achievement-btn">
+          <i class="fa-solid fa-plus"></i> Add entry
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Source</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="achievement-table-body">
+          <tr><td colspan="3" class="admin-empty">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="achievement-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title" id="achievement-modal-title">Add entry</h3>
+      <button class="modal-close-btn" id="achievement-modal-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="achievement-form">
+      <input type="hidden" id="achievement-id" />
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Title (English)</label>
+          <input type="text" id="achievement-titleEn" class="form-input" placeholder="DEPI Selection" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Title (Arabic)</label>
+          <input type="text" id="achievement-titleAr" class="form-input" placeholder="اختيار في DEPI" dir="rtl" required />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Source / Organization (English)</label>
+          <input type="text" id="achievement-subtitleEn" class="form-input" placeholder="Digital Egypt Pioneers Initiative" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Source / Organization (Arabic)</label>
+          <input type="text" id="achievement-subtitleAr" class="form-input" placeholder="مبادرة رواد مصر الرقمية" dir="rtl" required />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Description (English)</label>
+          <textarea id="achievement-descriptionEn" class="form-textarea" placeholder="Selected to join Egypt's prestigious national initiative..." required></textarea>
+        </div>
+        <div class="modal-form-group">
+          <label>Description (Arabic)</label>
+          <textarea id="achievement-descriptionAr" class="form-textarea" placeholder="تم اختياري للانضمام لمبادرة وطنية مرموقة..." dir="rtl" required></textarea>
+        </div>
+      </div>
+
+      <div class="modal-form-group">
+        <label>External link (optional)</label>
+        <input type="url" id="achievement-link" class="form-input" placeholder="https://..." />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Icon / Logo</label>
+        <input type="file" id="achievement-logo-input" accept="image/*" />
+        <img id="achievement-logo-preview" src="" alt="" style="display:none;max-width:100px;max-height:60px;object-fit:contain;margin-top:10px;border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:6px;background:#fff;" onerror="this.style.display='none'" />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Display order</label>
+        <input type="number" id="achievement-order" class="form-input" placeholder="0" value="0" />
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="achievement-cancel-btn">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="achievement-submit-btn">Save entry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/theme-toggle.js"></script>
+<script src="../js/api.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-sidebar.js"></script>
+<script src="js/admin-toast.js"></script>
+<script src="js/manage-achievements.js"></script>
+</body>
+</html>

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/home.css" />
   <link rel="stylesheet" href="css/education.css" />
   <link rel="stylesheet" href="css/experience.css" />
+  <link rel="stylesheet" href="css/achievements.css" />
   <link rel="stylesheet" href="css/services.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
@@ -27,10 +28,11 @@
         <a href="#home" class="active" data-en="Home" data-ar="الرئيسية">Home</a>
         <a href="#about" data-en="About" data-ar="نبذة">About</a>
         <a href="#education" data-en="Education" data-ar="التعليم">Education</a>
+        <a href="#certificates" data-en="Certificates" data-ar="الشهادات">Certificates</a>
         <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
         <a href="#experience" data-en="Experience" data-ar="الخبرات">Experience</a>
-        <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
         <a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a>
+        <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
         <a href="#achievements" data-en="Achievements" data-ar="الإنجازات">Achievements</a>
         <a href="contact.html" data-en="Contact" data-ar="تواصل">Contact</a>
       </nav>
@@ -63,6 +65,11 @@
       <span class="side-nav-label" data-en="Education" data-ar="التعليم">Education</span>
     </div>
     <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="certificates">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Certificates" data-ar="الشهادات">Certificates</span>
+    </div>
+    <div class="side-nav-line"></div>
     <div class="side-nav-item" data-section="skills">
       <div class="side-nav-dot"></div>
       <span class="side-nav-label" data-en="Skills" data-ar="المهارات">Skills</span>
@@ -73,14 +80,14 @@
       <span class="side-nav-label" data-en="Experience" data-ar="الخبرات">Experience</span>
     </div>
     <div class="side-nav-line"></div>
-    <div class="side-nav-item" data-section="services">
-      <div class="side-nav-dot"></div>
-      <span class="side-nav-label" data-en="Services" data-ar="الخدمات">Services</span>
-    </div>
-    <div class="side-nav-line"></div>
     <div class="side-nav-item" data-section="projects">
       <div class="side-nav-dot"></div>
       <span class="side-nav-label" data-en="Projects" data-ar="المشاريع">Projects</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="services">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Services" data-ar="الخدمات">Services</span>
     </div>
     <div class="side-nav-line"></div>
     <div class="side-nav-item" data-section="achievements">
@@ -260,6 +267,25 @@
     </div>
   </section>
 
+  <!-- ============ Certificates (preview) Section ============ -->
+  <section id="certificates" class="achievements-section">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <span class="section-label" data-en="Credentials" data-ar="الشهادات">Credentials</span>
+          <h2 class="section-title" data-en="Certificates" data-ar="الشهادات">Certificates</h2>
+        </div>
+        <a href="projects.html#certificates" class="btn btn-outline" data-en="View All Certificates" data-ar="عرض كل الشهادات">
+          View All Certificates <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="achievements-row" id="achievements-row">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ Skills Section ============ -->
   <section id="skills" class="skills-section">
     <div class="container">
@@ -286,6 +312,27 @@
       </h2>
 
       <div class="exp-timeline" id="experience-timeline">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Projects Section ============ -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <span class="section-label" data-en="Featured Projects" data-ar="مشاريع مميزة">Featured Projects</span>
+          <h2 class="section-title" data-html data-en="AI solutions I've <span class='text-gradient'>built</span>" data-ar="حلول ذكاء اصطناعي <span class='text-gradient'>قمت ببنائها</span>">
+            AI solutions I've <span class="text-gradient">built</span>
+          </h2>
+        </div>
+        <a href="projects.html" class="btn btn-outline" data-en="View All Projects" data-ar="عرض كل المشاريع">
+          View All Projects <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
         <div class="loading-spinner"></div>
       </div>
     </div>
@@ -407,41 +454,15 @@
     </div>
   </section>
 
-  <!-- ============ Projects Section ============ -->
-  <section id="projects" class="projects-section">
+  <!-- ============ Achievements Section (كروت جديدة، مختلفة عن Certificates) ============ -->
+  <section id="achievements" class="achievements-showcase-section">
     <div class="container">
-      <div class="section-head-row">
-        <div>
-          <span class="section-label" data-en="Featured Projects" data-ar="مشاريع مميزة">Featured Projects</span>
-          <h2 class="section-title" data-html data-en="AI solutions I've <span class='text-gradient'>built</span>" data-ar="حلول ذكاء اصطناعي <span class='text-gradient'>قمت ببنائها</span>">
-            AI solutions I've <span class="text-gradient">built</span>
-          </h2>
-        </div>
-        <a href="projects.html" class="btn btn-outline" data-en="View All Projects" data-ar="عرض كل المشاريع">
-          View All Projects <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
+      <span class="section-label" data-en="Milestones" data-ar="محطات مهمة">Milestones</span>
+      <h2 class="section-title" data-html data-en="Notable <span class='text-gradient'>achievements</span>" data-ar="<span class='text-gradient'>إنجازات</span> بارزة">
+        Notable <span class="text-gradient">achievements</span>
+      </h2>
 
-      <div class="projects-grid" id="projects-grid">
-        <div class="loading-spinner"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Achievements Section ============ -->
-  <section id="achievements" class="achievements-section">
-    <div class="container">
-      <div class="section-head-row">
-        <div>
-          <span class="section-label" data-en="Credentials" data-ar="الشهادات">Credentials</span>
-          <h2 class="section-title" data-en="Achievements" data-ar="الإنجازات">Achievements</h2>
-        </div>
-        <a href="projects.html#certificates" class="btn btn-outline" data-en="View All Achievements" data-ar="عرض كل الإنجازات">
-          View All Achievements <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-
-      <div class="achievements-row" id="achievements-row">
+      <div class="ach-grid" id="achievements-grid">
         <div class="loading-spinner"></div>
       </div>
     </div>
@@ -577,5 +598,6 @@
   </div>
 
   <script src="js/render-experience.js"></script>
+  <script src="js/render-achievements.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ const skillRoutes = require('./routes/skillRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const authRoutes = require('./routes/authRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
+const achievementRoutes = require('./routes/achievementRoutes');
 const educationRoutes = require('./routes/educationRoutes');
 const experienceRoutes = require('./routes/experienceRoutes');
 
@@ -48,6 +49,7 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/achievements', achievementRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/education', educationRoutes);
 app.use('/api/experience', experienceRoutes);
