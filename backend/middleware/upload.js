@@ -30,7 +30,11 @@ const uploadEducationLogo = upload.single('logo');
 // نسخة خاصة لبادچ منصة عمل حر: لوجو واحد بس
 const uploadPlatformLogo = upload.single('logo');
 
+// نسخة خاصة لعنصر إنجاز واحد: لوجو/أيقونة بس (كانت ناقصة وده اللي وقّف السيرفر)
+const uploadAchievementLogo = upload.single('logo');
+
 module.exports = upload;
 module.exports.uploadCertificateFiles = uploadCertificateFiles;
 module.exports.uploadEducationLogo = uploadEducationLogo;
 module.exports.uploadPlatformLogo = uploadPlatformLogo;
+module.exports.uploadAchievementLogo = uploadAchievementLogo;
