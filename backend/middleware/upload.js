@@ -33,8 +33,12 @@ const uploadPlatformLogo = upload.single('logo');
 // نسخة خاصة لعنصر إنجاز واحد: لوجو/أيقونة بس (كانت ناقصة وده اللي وقّف السيرفر)
 const uploadAchievementLogo = upload.single('logo');
 
+// نسخة خاصة لعنصر خبرة واحد: لوجو الجهة بس (كانت ناقصة برضو)
+const uploadExperienceLogo = upload.single('logo');
+
 module.exports = upload;
 module.exports.uploadCertificateFiles = uploadCertificateFiles;
 module.exports.uploadEducationLogo = uploadEducationLogo;
 module.exports.uploadPlatformLogo = uploadPlatformLogo;
 module.exports.uploadAchievementLogo = uploadAchievementLogo;
+module.exports.uploadExperienceLogo = uploadExperienceLogo;
