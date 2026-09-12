@@ -92,3 +92,7 @@ async function fetchAchievements() {
 async function fetchAchievementById(id) {
   return await apiGet(`/achievements/${id}`);
 }
+
+async function fetchTestimonials() {
+  return (await apiGet('/testimonials')) || [];
+}

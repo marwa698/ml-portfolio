@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/experience.css" />
   <link rel="stylesheet" href="css/achievements.css" />
   <link rel="stylesheet" href="css/services.css" />
+  <link rel="stylesheet" href="css/testimonials.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
@@ -34,6 +35,7 @@
         <a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a>
         <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
         <a href="#achievements" data-en="Achievements" data-ar="الإنجازات">Achievements</a>
+        <a href="#testimonials" data-en="Testimonials" data-ar="آراء العملاء">Testimonials</a>
         <a href="contact.html" data-en="Contact" data-ar="تواصل">Contact</a>
       </nav>
 
@@ -93,6 +95,11 @@
     <div class="side-nav-item" data-section="achievements">
       <div class="side-nav-dot"></div>
       <span class="side-nav-label" data-en="Achievements" data-ar="الإنجازات">Achievements</span>
+    </div>
+    <div class="side-nav-line"></div>
+    <div class="side-nav-item" data-section="testimonials">
+      <div class="side-nav-dot"></div>
+      <span class="side-nav-label" data-en="Testimonials" data-ar="آراء العملاء">Testimonials</span>
     </div>
     <div class="side-nav-line"></div>
     <div class="side-nav-item" data-section="contact">
@@ -468,6 +475,26 @@
     </div>
   </section>
 
+  <!-- ============ Testimonials Section ============ -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="container">
+      <span class="section-label" data-en="Client Feedback" data-ar="آراء العملاء">Client Feedback</span>
+      <h2 class="section-title" data-html data-en="What <span class='text-gradient'>clients</span> say" data-ar="ماذا يقول <span class='text-gradient'>العملاء</span>">
+        What <span class="text-gradient">clients</span> say
+      </h2>
+
+      <div class="testimonials-slider-wrap">
+        <button class="testimonials-arrow-btn" id="testimonials-prev-btn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+        <div id="testimonials-slider" class="testimonials-slider">
+          <div class="loading-spinner"></div>
+        </div>
+        <button class="testimonials-arrow-btn" id="testimonials-next-btn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+      <div class="testimonials-dots" id="testimonials-dots"></div>
+    </div>
+  </section>
+
   <!-- ============ Contact Section ============ -->
   <section id="contact" class="contact-section">
     <div class="container">
@@ -559,6 +586,7 @@
   <script src="js/render-skills.js"></script>
   <script src="js/render-projects.js"></script>
   <script src="js/render-certificates.js"></script>
+  <script src="js/render-testimonials.js"></script>
   <script src="js/contact-form.js"></script>
   <script src="js/animations.js"></script>
 
