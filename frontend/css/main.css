@@ -457,6 +457,127 @@ img {
 }
 
 /* ===================================
+   الفوتر الجديد (3 أعمدة) - مستخدم في index.html وcontact.html
+   =================================== */
+.site-footer-new {
+  border-top: 1px solid var(--border-color);
+  padding: 50px 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 36px;
+}
+
+.footer-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-col-right {
+  text-align: right;
+}
+
+[dir='rtl'] .footer-col-right {
+  text-align: left;
+}
+
+.footer-col-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.footer-col-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-col-right .footer-socials {
+  justify-content: flex-end;
+}
+
+[dir='rtl'] .footer-col-right .footer-socials {
+  justify-content: flex-start;
+}
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 14px;
+  transition: all var(--transition-fast);
+}
+
+.footer-socials a:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.footer-logo {
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+
+.footer-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-platform-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  transition: all var(--transition-fast);
+}
+
+.footer-platform-badge:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+.footer-platform-badge img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border-color);
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ===================================
    الفوتر
    =================================== */
 .site-footer {

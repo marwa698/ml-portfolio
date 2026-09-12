@@ -27,14 +27,10 @@ const uploadCertificateFiles = upload.fields([
 // نسخة خاصة لعنصر تعليم واحد: لوجو الجهة بس (ملف واحد)
 const uploadEducationLogo = upload.single('logo');
 
+// نسخة خاصة لبادچ منصة عمل حر: لوجو واحد بس
+const uploadPlatformLogo = upload.single('logo');
+
 module.exports = upload;
 module.exports.uploadCertificateFiles = uploadCertificateFiles;
 module.exports.uploadEducationLogo = uploadEducationLogo;
-
-// نسخة خاصة لعنصر خبرة واحد: لوجو الجهة بس (ملف واحد)، بنفس منطق الـ Education
-const uploadExperienceLogo = upload.single('logo');
-
-module.exports.uploadExperienceLogo = uploadExperienceLogo;
-
-const uploadAchievementLogo = upload.single('logo');
-module.exports.uploadAchievementLogo = uploadAchievementLogo;
+module.exports.uploadPlatformLogo = uploadPlatformLogo;

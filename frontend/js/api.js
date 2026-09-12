@@ -96,3 +96,7 @@ async function fetchAchievementById(id) {
 async function fetchTestimonials() {
   return (await apiGet('/testimonials')) || [];
 }
+
+async function fetchPlatformLinks() {
+  return (await apiGet('/platform-links')) || [];
+}

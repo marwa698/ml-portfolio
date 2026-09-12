@@ -13,6 +13,7 @@ function renderAdminSidebar(activePage) {
     { id: 'experience', href: 'manage-experience.html', icon: 'fa-briefcase', label: 'Experience' },
     { id: 'achievements', href: 'manage-achievements.html', icon: 'fa-trophy', label: 'Achievements' },
     { id: 'testimonials', href: 'manage-testimonials.html', icon: 'fa-quote-left', label: 'Testimonials' },
+    { id: 'platform-links', href: 'manage-platform-links.html', icon: 'fa-link', label: 'Platform Links' },
     { id: 'skills', href: 'manage-skills.html', icon: 'fa-layer-group', label: 'Skills' },
     { id: 'messages', href: 'manage-messages.html', icon: 'fa-envelope', label: 'Messages' },
     { id: 'settings', href: 'settings.html', icon: 'fa-gear', label: 'Settings' },

@@ -15,6 +15,7 @@ const achievementRoutes = require('./routes/achievementRoutes');
 const educationRoutes = require('./routes/educationRoutes');
 const experienceRoutes = require('./routes/experienceRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
+const platformLinkRoutes = require('./routes/platformLinkRoutes');
 
 // نتصل بقاعدة البيانات قبل أي حاجة
 connectDB();
@@ -55,6 +56,7 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/education', educationRoutes);
 app.use('/api/experience', experienceRoutes);
 app.use('/api/testimonials', testimonialRoutes);
+app.use('/api/platform-links', platformLinkRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'ML Portfolio API شغال تمام ✓' });
