@@ -40,11 +40,14 @@ function renderTestimonialSlide() {
     i < item.rating ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>'
   ).join('');
 
+  const quoteEn = `"${item.quote.en}"`;
+  const quoteAr = `"${item.quote.ar || item.quote.en}"`;
+
   container.innerHTML = `
     <div class="testimonial-card">
       ${item.tag ? `<span class="testimonial-tag">${item.tag}</span>` : ''}
       <div class="testimonial-stars">${stars}</div>
-      <p class="testimonial-quote">"${item.quote}"</p>
+      <p class="testimonial-quote" data-en="${quoteEn}" data-ar="${quoteAr}">${quoteEn}</p>
       <div class="testimonial-footer">
         <div class="testimonial-avatar">${getClientInitials(item.clientName)}</div>
         <div class="testimonial-identity">

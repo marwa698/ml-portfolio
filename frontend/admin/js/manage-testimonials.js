@@ -27,7 +27,7 @@ function renderTestimonialsTable(items) {
         ${item.role ? `<div style="font-size:12px;color:var(--text-muted);">${item.role}</div>` : ''}
       </td>
       <td>${'★'.repeat(item.rating)}${'☆'.repeat(5 - item.rating)}</td>
-      <td style="max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${item.quote}</td>
+      <td style="max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${item.quote.en}</td>
       <td>
         <div class="admin-row-actions">
           <button class="admin-icon-btn" onclick="openEditTestimonialModal('${item._id}')" aria-label="Edit"><i class="fa-solid fa-pen"></i></button>
@@ -62,7 +62,8 @@ function openEditTestimonialModal(id) {
   document.getElementById('testimonial-tag').value = item.tag || '';
   document.getElementById('testimonial-rating').value = item.rating;
   document.getElementById('testimonial-rating-display').textContent = item.rating;
-  document.getElementById('testimonial-quote').value = item.quote;
+  document.getElementById('testimonial-quote-en').value = item.quote.en || '';
+  document.getElementById('testimonial-quote-ar').value = item.quote.ar || '';
   document.getElementById('testimonial-link').value = item.verificationLink || '';
   document.getElementById('testimonial-order').value = item.order || 0;
   testimonialModal.classList.add('show');
@@ -86,7 +87,8 @@ testimonialForm.addEventListener('submit', async function (e) {
     role: document.getElementById('testimonial-role').value,
     tag: document.getElementById('testimonial-tag').value,
     rating: parseInt(document.getElementById('testimonial-rating').value),
-    quote: document.getElementById('testimonial-quote').value,
+    quoteEn: document.getElementById('testimonial-quote-en').value,
+    quoteAr: document.getElementById('testimonial-quote-ar').value,
     verificationLink: document.getElementById('testimonial-link').value,
     order: parseInt(document.getElementById('testimonial-order').value) || 0,
   };

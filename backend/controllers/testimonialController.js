@@ -26,14 +26,14 @@ const getTestimonialById = async (req, res) => {
 // POST /api/testimonials
 const createTestimonial = async (req, res) => {
   try {
-    const { clientName, role, tag, rating, quote, verificationLink, order } = req.body;
+    const { clientName, role, tag, rating, quoteEn, quoteAr, verificationLink, order } = req.body;
 
     const item = await Testimonial.create({
       clientName,
       role: role || '',
       tag: tag || '',
       rating: rating || 5,
-      quote,
+      quote: { en: quoteEn, ar: quoteAr || '' },
       verificationLink: verificationLink || '',
       order: order || 0,
     });
@@ -52,13 +52,20 @@ const updateTestimonial = async (req, res) => {
       return res.status(404).json({ message: 'الرأي غير موجود' });
     }
 
-    const { clientName, role, tag, rating, quote, verificationLink, order } = req.body;
+    const { clientName, role, tag, rating, quoteEn, quoteAr, verificationLink, order } = req.body;
 
     item.clientName = clientName ?? item.clientName;
     item.role = role ?? item.role;
     item.tag = tag ?? item.tag;
     item.rating = rating ?? item.rating;
-    item.quote = quote ?? item.quote;
+
+    if (quoteEn !== undefined || quoteAr !== undefined) {
+      item.quote = {
+        en: quoteEn ?? item.quote.en,
+        ar: quoteAr ?? item.quote.ar,
+      };
+    }
+
     item.verificationLink = verificationLink ?? item.verificationLink;
     item.order = order ?? item.order;
 

@@ -26,11 +26,10 @@ const testimonialSchema = new mongoose.Schema(
       max: 5,
       default: 5,
     },
-    // نص الرأي نفسه
+    // نص الرأي - ثنائي اللغة عشان يتغير فعليًا مع تبديل لغة الموقع
     quote: {
-      type: String,
-      required: [true, 'نص الرأي مطلوب'],
-      trim: true,
+      en: { type: String, required: [true, 'نص الرأي بالإنجليزي مطلوب'] },
+      ar: { type: String, default: '' },
     },
     // رابط اختياري يثبت مصدر الرأي (صفحة تقييم على منصة فريلانسنج مثلاً)
     verificationLink: {
