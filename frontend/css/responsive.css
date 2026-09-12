@@ -208,6 +208,20 @@
   .services-cta-action {
     align-items: center;
   }
+
+  .testimonial-card {
+    padding: 22px;
+  }
+
+  .testimonials-arrow-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .testimonials-slider-wrap {
+    gap: 8px;
+  }
 }
 
 /* ===================================
