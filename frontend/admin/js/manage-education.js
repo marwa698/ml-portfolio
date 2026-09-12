@@ -29,12 +29,12 @@ function renderEducationTable(items) {
               ? `<img src="${buildImageUrl(item.logoUrl)}" style="width:28px;height:28px;object-fit:contain;background:#fff;border:1px solid var(--border-color);border-radius:6px;padding:2px;" />`
               : ''
           }
-          <span class="admin-row-title">${item.institution}</span>
+          <span class="admin-row-title">${item.institutionEn}</span>
         </div>
       </td>
-      <td>${item.program}</td>
+      <td>${item.programEn}</td>
       <td>${item.type}</td>
-      <td>${item.period}</td>
+      <td>${item.periodEn}</td>
       <td>
         <div class="admin-row-actions">
           <button class="admin-icon-btn" onclick="openEditEducationModal('${item._id}')" aria-label="Edit"><i class="fa-solid fa-pen"></i></button>
@@ -63,12 +63,17 @@ function openEditEducationModal(id) {
   if (!item) return;
   document.getElementById('education-modal-title').textContent = 'Edit entry';
   document.getElementById('education-id').value = item._id;
-  document.getElementById('education-institution').value = item.institution;
-  document.getElementById('education-program').value = item.program;
-  document.getElementById('education-period').value = item.period;
+  document.getElementById('education-institutionEn').value = item.institutionEn;
+  document.getElementById('education-institutionAr').value = item.institutionAr;
+  document.getElementById('education-programEn').value = item.programEn;
+  document.getElementById('education-programAr').value = item.programAr;
+  document.getElementById('education-periodEn').value = item.periodEn;
+  document.getElementById('education-periodAr').value = item.periodAr;
   document.getElementById('education-type').value = item.type || 'Online Course';
-  document.getElementById('education-status').value = item.status || '';
-  document.getElementById('education-description').value = item.description || '';
+  document.getElementById('education-statusEn').value = item.statusEn || '';
+  document.getElementById('education-statusAr').value = item.statusAr || '';
+  document.getElementById('education-descriptionEn').value = item.descriptionEn || '';
+  document.getElementById('education-descriptionAr').value = item.descriptionAr || '';
   document.getElementById('education-link').value = item.link || '';
   document.getElementById('education-order').value = item.order || 0;
 
@@ -91,7 +96,6 @@ document.getElementById('add-education-btn').addEventListener('click', openAddEd
 document.getElementById('education-modal-close').addEventListener('click', closeEducationModal);
 document.getElementById('education-cancel-btn').addEventListener('click', closeEducationModal);
 
-// معاينة اللوجو فور اختيار ملف جديد
 document.getElementById('education-logo-input').addEventListener('change', function () {
   const file = this.files[0];
   if (!file) return;
@@ -106,12 +110,17 @@ educationForm.addEventListener('submit', async function (e) {
   const submitBtn = document.getElementById('education-submit-btn');
 
   const formData = new FormData();
-  formData.append('institution', document.getElementById('education-institution').value);
-  formData.append('program', document.getElementById('education-program').value);
-  formData.append('period', document.getElementById('education-period').value);
+  formData.append('institutionEn', document.getElementById('education-institutionEn').value);
+  formData.append('institutionAr', document.getElementById('education-institutionAr').value);
+  formData.append('programEn', document.getElementById('education-programEn').value);
+  formData.append('programAr', document.getElementById('education-programAr').value);
+  formData.append('periodEn', document.getElementById('education-periodEn').value);
+  formData.append('periodAr', document.getElementById('education-periodAr').value);
   formData.append('type', document.getElementById('education-type').value);
-  formData.append('status', document.getElementById('education-status').value);
-  formData.append('description', document.getElementById('education-description').value);
+  formData.append('statusEn', document.getElementById('education-statusEn').value);
+  formData.append('statusAr', document.getElementById('education-statusAr').value);
+  formData.append('descriptionEn', document.getElementById('education-descriptionEn').value);
+  formData.append('descriptionAr', document.getElementById('education-descriptionAr').value);
   formData.append('link', document.getElementById('education-link').value);
   formData.append('order', document.getElementById('education-order').value || 0);
 

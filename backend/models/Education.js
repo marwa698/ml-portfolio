@@ -1,57 +1,41 @@
 const mongoose = require('mongoose');
 
-// شكل بيانات "التعليم" في قاعدة البيانات
-// كل عنصر بيمثل جامعة أو كورس أو تدريب مهني ظاهر في قسم Education بالبورتوفوليو
+// شكل بيانات "التعليم" — كل حقل نصي مهم له نسخة إنجليزي وعربي منفصلة
+// عشان لما اليوزر يبدل اللغة، المحتوى كله يتبدل معاه مش بس العناصر الثابتة
 const educationSchema = new mongoose.Schema(
   {
-    institution: {
-      type: String,
-      required: [true, 'اسم الجهة التعليمية مطلوب'],
-      trim: true,
-    },
-    // اسم الدرجة أو الكورس، مثلاً "B.Sc. in Artificial Intelligence"
-    program: {
-      type: String,
-      required: [true, 'اسم الدرجة أو الكورس مطلوب'],
-      trim: true,
-    },
-    // النص الظاهر في التايم لاين، مثلاً "2024 – 2028" أو "2026"
-    period: {
-      type: String,
-      required: true,
-    },
-    // نص إضافي اختياري تحت الفترة، مثلاً "Expected Graduation Jun 2028" أو "Completed"
-    status: {
-      type: String,
-      default: '',
-    },
-    // نوع العنصر، بيظهر كـ badge: Undergraduate / Online Course / Professional Training / إلخ
+    institutionEn: { type: String, required: [true, 'اسم الجهة بالإنجليزي مطلوب'], trim: true },
+    institutionAr: { type: String, required: [true, 'اسم الجهة بالعربي مطلوب'], trim: true },
+
+    // اسم الدرجة أو الكورس
+    programEn: { type: String, required: [true, 'اسم الكورس بالإنجليزي مطلوب'], trim: true },
+    programAr: { type: String, required: [true, 'اسم الكورس بالعربي مطلوب'], trim: true },
+
+    // النص الظاهر في التايم لاين، مثلاً "2024 – 2028"
+    periodEn: { type: String, required: true, trim: true },
+    periodAr: { type: String, required: true, trim: true },
+
+    // نص إضافي اختياري تحت الفترة، مثلاً "Completed" / "Expected Graduation..."
+    statusEn: { type: String, default: '' },
+    statusAr: { type: String, default: '' },
+
+    // نوع العنصر — من قايمة ثابتة، والترجمة بتتحصل تلقائيًا في الفرونت إند (مش محتاجة تتكتب مرتين)
     type: {
       type: String,
+      enum: ['Undergraduate', 'Online Course', 'Professional Training'],
       default: 'Online Course',
     },
-    description: {
-      type: String,
-      default: '',
-    },
-    // لوجو الجهة (رفعة واحدة، زي لوجو الشهادة)
-    logoUrl: {
-      type: String,
-      required: true,
-    },
-    // رابط خارجي اختياري (صفحة الكورس أو الجامعة)
-    link: {
-      type: String,
-      default: '',
-    },
-    order: {
-      type: Number,
-      default: 0,
-    },
+
+    descriptionEn: { type: String, default: '' },
+    descriptionAr: { type: String, default: '' },
+
+    // لوجو الجهة
+    logoUrl: { type: String, required: true },
+
+    link: { type: String, default: '' },
+    order: { type: Number, default: 0 },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model('Education', educationSchema);

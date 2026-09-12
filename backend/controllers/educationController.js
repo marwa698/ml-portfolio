@@ -1,6 +1,5 @@
 const Education = require('../models/Education');
 
-// GET /api/education
 const getEducation = async (req, res) => {
   try {
     const items = await Education.find().sort({ order: 1, createdAt: -1 });
@@ -10,23 +9,26 @@ const getEducation = async (req, res) => {
   }
 };
 
-// GET /api/education/:id
 const getEducationById = async (req, res) => {
   try {
     const item = await Education.findById(req.params.id);
-    if (!item) {
-      return res.status(404).json({ message: 'العنصر غير موجود' });
-    }
+    if (!item) return res.status(404).json({ message: 'العنصر غير موجود' });
     res.json(item);
   } catch (error) {
     res.status(500).json({ message: 'حصل خطأ في جلب العنصر', error: error.message });
   }
 };
 
-// POST /api/education
 const createEducation = async (req, res) => {
   try {
-    const { institution, program, period, status, type, description, link, order } = req.body;
+    const {
+      institutionEn, institutionAr,
+      programEn, programAr,
+      periodEn, periodAr,
+      statusEn, statusAr,
+      type, descriptionEn, descriptionAr,
+      link, order,
+    } = req.body;
 
     const logoUrl = req.file ? req.file.path : '';
     if (!logoUrl) {
@@ -34,12 +36,14 @@ const createEducation = async (req, res) => {
     }
 
     const item = await Education.create({
-      institution,
-      program,
-      period,
-      status: status || '',
+      institutionEn, institutionAr,
+      programEn, programAr,
+      periodEn, periodAr,
+      statusEn: statusEn || '',
+      statusAr: statusAr || '',
       type: type || 'Online Course',
-      description: description || '',
+      descriptionEn: descriptionEn || '',
+      descriptionAr: descriptionAr || '',
       logoUrl,
       link: link || '',
       order: order || 0,
@@ -51,28 +55,35 @@ const createEducation = async (req, res) => {
   }
 };
 
-// PUT /api/education/:id
 const updateEducation = async (req, res) => {
   try {
     const item = await Education.findById(req.params.id);
-    if (!item) {
-      return res.status(404).json({ message: 'العنصر غير موجود' });
-    }
+    if (!item) return res.status(404).json({ message: 'العنصر غير موجود' });
 
-    const { institution, program, period, status, type, description, link, order } = req.body;
+    const {
+      institutionEn, institutionAr,
+      programEn, programAr,
+      periodEn, periodAr,
+      statusEn, statusAr,
+      type, descriptionEn, descriptionAr,
+      link, order,
+    } = req.body;
 
-    item.institution = institution ?? item.institution;
-    item.program = program ?? item.program;
-    item.period = period ?? item.period;
-    item.status = status ?? item.status;
+    item.institutionEn = institutionEn ?? item.institutionEn;
+    item.institutionAr = institutionAr ?? item.institutionAr;
+    item.programEn = programEn ?? item.programEn;
+    item.programAr = programAr ?? item.programAr;
+    item.periodEn = periodEn ?? item.periodEn;
+    item.periodAr = periodAr ?? item.periodAr;
+    item.statusEn = statusEn ?? item.statusEn;
+    item.statusAr = statusAr ?? item.statusAr;
     item.type = type ?? item.type;
-    item.description = description ?? item.description;
+    item.descriptionEn = descriptionEn ?? item.descriptionEn;
+    item.descriptionAr = descriptionAr ?? item.descriptionAr;
     item.link = link ?? item.link;
     item.order = order ?? item.order;
 
-    if (req.file) {
-      item.logoUrl = req.file.path;
-    }
+    if (req.file) item.logoUrl = req.file.path;
 
     const updated = await item.save();
     res.json(updated);
@@ -81,13 +92,10 @@ const updateEducation = async (req, res) => {
   }
 };
 
-// DELETE /api/education/:id
 const deleteEducation = async (req, res) => {
   try {
     const item = await Education.findById(req.params.id);
-    if (!item) {
-      return res.status(404).json({ message: 'العنصر غير موجود' });
-    }
+    if (!item) return res.status(404).json({ message: 'العنصر غير موجود' });
     await item.deleteOne();
     res.json({ message: 'تم الحذف بنجاح' });
   } catch (error) {
@@ -95,10 +103,4 @@ const deleteEducation = async (req, res) => {
   }
 };
 
-module.exports = {
-  getEducation,
-  getEducationById,
-  createEducation,
-  updateEducation,
-  deleteEducation,
-};
+module.exports = { getEducation, getEducationById, createEducation, updateEducation, deleteEducation };

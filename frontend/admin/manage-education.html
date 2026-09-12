@@ -49,7 +49,7 @@
 
 <!-- Modal -->
 <div class="modal-overlay" id="education-modal">
-  <div class="modal-box">
+  <div class="modal-box" style="max-width:640px;">
     <div class="modal-header">
       <h3 class="modal-title" id="education-modal-title">Add entry</h3>
       <button class="modal-close-btn" id="education-modal-close"><i class="fa-solid fa-xmark"></i></button>
@@ -57,39 +57,68 @@
     <form id="education-form">
       <input type="hidden" id="education-id" />
 
-      <div class="modal-form-group">
-        <label>Institution name</label>
-        <input type="text" id="education-institution" class="form-input" placeholder="Helwan International Technological University (HITU)" required />
-      </div>
-
-      <div class="modal-form-group">
-        <label>Program / Course title</label>
-        <input type="text" id="education-program" class="form-input" placeholder="B.Sc. in Artificial Intelligence" required />
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Institution name (English)</label>
+          <input type="text" id="education-institutionEn" class="form-input" placeholder="Helwan International Technological University (HITU)" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Institution name (Arabic)</label>
+          <input type="text" id="education-institutionAr" class="form-input" placeholder="جامعة حلوان الدولية التكنولوجية" dir="rtl" required />
+        </div>
       </div>
 
       <div class="modal-form-row">
         <div class="modal-form-group">
-          <label>Period (shown on the timeline)</label>
-          <input type="text" id="education-period" class="form-input" placeholder="2024 – 2028 or 2026" required />
+          <label>Program / Course (English)</label>
+          <input type="text" id="education-programEn" class="form-input" placeholder="B.Sc. in Artificial Intelligence" required />
         </div>
         <div class="modal-form-group">
-          <label>Type</label>
-          <select id="education-type" class="form-input">
-            <option value="Undergraduate">Undergraduate</option>
-            <option value="Online Course">Online Course</option>
-            <option value="Professional Training">Professional Training</option>
-          </select>
+          <label>Program / Course (Arabic)</label>
+          <input type="text" id="education-programAr" class="form-input" placeholder="بكالوريوس الذكاء الاصطناعي" dir="rtl" required />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Period (English)</label>
+          <input type="text" id="education-periodEn" class="form-input" placeholder="2024 – 2028" required />
+        </div>
+        <div class="modal-form-group">
+          <label>Period (Arabic)</label>
+          <input type="text" id="education-periodAr" class="form-input" placeholder="2024 – 2028" dir="rtl" required />
         </div>
       </div>
 
       <div class="modal-form-group">
-        <label>Status (optional small note under the period)</label>
-        <input type="text" id="education-status" class="form-input" placeholder="Expected Graduation Jun 2028 or Completed" />
+        <label>Type</label>
+        <select id="education-type" class="form-input">
+          <option value="Undergraduate">Undergraduate</option>
+          <option value="Online Course">Online Course</option>
+          <option value="Professional Training">Professional Training</option>
+        </select>
       </div>
 
-      <div class="modal-form-group">
-        <label>Description</label>
-        <textarea id="education-description" class="form-textarea" placeholder="Short description of what this covered"></textarea>
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Status note (English) — optional</label>
+          <input type="text" id="education-statusEn" class="form-input" placeholder="Completed" />
+        </div>
+        <div class="modal-form-group">
+          <label>Status note (Arabic) — optional</label>
+          <input type="text" id="education-statusAr" class="form-input" placeholder="مكتمل" dir="rtl" />
+        </div>
+      </div>
+
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Description (English)</label>
+          <textarea id="education-descriptionEn" class="form-textarea" placeholder="Short description of what this covered"></textarea>
+        </div>
+        <div class="modal-form-group">
+          <label>Description (Arabic)</label>
+          <textarea id="education-descriptionAr" class="form-textarea" placeholder="وصف قصير لمحتوى الكورس" dir="rtl"></textarea>
+        </div>
       </div>
 
       <div class="modal-form-group">
