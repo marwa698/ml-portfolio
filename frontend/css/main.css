@@ -157,6 +157,7 @@ img {
 .logo {
   font-size: 22px;
   font-weight: 800;
+  letter-spacing: 1.5px;
   color: var(--text-primary);
 }
 
