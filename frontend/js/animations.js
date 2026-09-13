@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // بنقارن بآخر جزء من الـ href عشان يشتغل سواء الرابط "#home" أو "index.html#home"
             navLinks.forEach(function (link) {
               const href = link.getAttribute('href') || '';
-              const hrefId = href.split('#')[1];
+              const hrefId = href.includes('#') ? href.split('#')[1] : href.replace('.html', '');
+
               link.classList.toggle('active', hrefId === id);
             });
           }
