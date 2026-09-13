@@ -1,4 +1,4 @@
-// عرض قسم الشهادات (Achievements) في الصفحة الرئيسية بجلبها من الباك إند
+// عرض كروت الشهادات (Featured) في الصفحة الرئيسية
 
 async function renderCertificates() {
   const container = document.getElementById('achievements-row');
@@ -7,12 +7,21 @@ async function renderCertificates() {
   const certificates = await fetchCertificates();
 
   if (!certificates.length) {
-    container.innerHTML = `<p class="empty-state" data-en="No certificates added yet" data-ar="لم تتم إضافة شهادات بعد">لم تتم إضافة شهادات بعد</p>`;
+    container.innerHTML = `<p class="empty-state" data-en="No certificates added yet" data-ar="لم تتم إضافة شهادات بعد">No certificates added yet</p>`;
     return;
   }
 
   const featured = certificates.slice(0, 4);
   container.innerHTML = featured.map(renderCertificateItem).join('');
+
+  const lang = document.documentElement.getAttribute('lang') || localStorage.getItem('portfolio-lang') || 'en';
+  container.querySelectorAll('[data-en][data-ar]').forEach((el) => {
+    el.textContent = lang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+  });
+}
+
+function esc(str) {
+  return (str || '').replace(/"/g, '&quot;');
 }
 
 function renderCertificateItem(cert) {
@@ -24,15 +33,17 @@ function renderCertificateItem(cert) {
       <div class="certificate-img-wrap">
         ${
           coverUrl
-            ? `<img src="${coverUrl}" alt="${cert.title}" />`
+            ? `<img src="${coverUrl}" alt="${cert.titleEn}" />`
             : `<div class="certificate-img-placeholder"><i class="fa-solid fa-certificate"></i></div>`
         }
       </div>
       <div class="certificate-body">
-        <div class="certificate-title">${cert.title}</div>
-        <div class="certificate-issuer">${cert.issuer} · ${cert.year}</div>
+        <div class="certificate-title" data-en="${esc(cert.titleEn)}" data-ar="${esc(cert.titleAr)}">${cert.titleEn}</div>
+        <div class="certificate-issuer">
+          <span data-en="${esc(cert.issuerEn)}" data-ar="${esc(cert.issuerAr)}">${cert.issuerEn}</span> · ${cert.year}
+        </div>
         <div class="certificate-footer">
-          ${logoUrl ? `<div class="certificate-logo-wrap"><img src="${logoUrl}" alt="${cert.issuer}" /></div>` : '<span></span>'}
+          ${logoUrl ? `<div class="certificate-logo-wrap"><img src="${logoUrl}" alt="${cert.issuerEn}" /></div>` : '<span></span>'}
           ${
             cert.verificationLink
               ? `<a href="${cert.verificationLink}" target="_blank" rel="noopener" class="certificate-link" onclick="event.stopPropagation()">

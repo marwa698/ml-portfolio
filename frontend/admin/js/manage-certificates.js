@@ -25,8 +25,8 @@ function renderCertificatesTable(certificates) {
       (c) => `
     <tr>
       <td>${c.logoUrl ? `<img src="${buildImageUrl(c.logoUrl)}" class="admin-row-thumb" alt="" />` : ''}</td>
-      <td class="admin-row-title">${c.title}</td>
-      <td>${c.issuer}</td>
+      <td class="admin-row-title">${c.titleEn}</td>
+      <td>${c.issuerEn}</td>
       <td>${c.year}</td>
       <td>
         <div class="admin-row-actions">
@@ -42,6 +42,31 @@ function renderCertificatesTable(certificates) {
 
 const certModal = document.getElementById('certificate-modal');
 const certForm = document.getElementById('certificate-form');
+const projectsList = document.getElementById('certificate-projects-list');
+
+function addProjectRow(en = '', ar = '') {
+  const row = document.createElement('div');
+  row.className = 'project-row';
+  row.style.cssText = 'display:flex;gap:10px;align-items:center;margin-top:8px;';
+  row.innerHTML = `
+    <input type="text" class="form-input project-en" placeholder="Customer Churn Prediction using SageMaker" value="${en.replace(/"/g, '&quot;')}" style="flex:1;" />
+    <input type="text" class="form-input project-ar" placeholder="التنبؤ بمغادرة العملاء باستخدام SageMaker" value="${ar.replace(/"/g, '&quot;')}" dir="rtl" style="flex:1;" />
+    <button type="button" class="admin-icon-btn danger remove-project-btn" aria-label="Remove"><i class="fa-solid fa-trash"></i></button>
+  `;
+  row.querySelector('.remove-project-btn').addEventListener('click', () => row.remove());
+  projectsList.appendChild(row);
+}
+
+document.getElementById('add-project-btn').addEventListener('click', () => addProjectRow());
+
+function getProjectsFromForm() {
+  return Array.from(projectsList.querySelectorAll('.project-row'))
+    .map((row) => ({
+      en: row.querySelector('.project-en').value.trim(),
+      ar: row.querySelector('.project-ar').value.trim(),
+    }))
+    .filter((p) => p.en && p.ar);
+}
 
 function openAddCertificateModal() {
   document.getElementById('certificate-modal-title').textContent = 'Add certificate';
@@ -49,6 +74,7 @@ function openAddCertificateModal() {
   document.getElementById('certificate-id').value = '';
   document.getElementById('certificate-logo-preview').style.display = 'none';
   document.getElementById('certificate-cert-image-preview').style.display = 'none';
+  projectsList.innerHTML = '';
   certModal.classList.add('show');
 }
 
@@ -58,13 +84,18 @@ function openEditCertificateModal(id) {
 
   document.getElementById('certificate-modal-title').textContent = 'Edit certificate';
   document.getElementById('certificate-id').value = cert._id;
-  document.getElementById('certificate-title').value = cert.title;
-  document.getElementById('certificate-issuer').value = cert.issuer;
+  document.getElementById('certificate-titleEn').value = cert.titleEn;
+  document.getElementById('certificate-titleAr').value = cert.titleAr;
+  document.getElementById('certificate-issuerEn').value = cert.issuerEn;
+  document.getElementById('certificate-issuerAr').value = cert.issuerAr;
   document.getElementById('certificate-year').value = cert.year;
   document.getElementById('certificate-link').value = cert.verificationLink || '';
   document.getElementById('certificate-order').value = cert.order || 0;
-  document.getElementById('certificate-description').value = cert.description || '';
-  document.getElementById('certificate-projects').value = (cert.relatedProjects || []).join('\n');
+  document.getElementById('certificate-descriptionEn').value = cert.descriptionEn || '';
+  document.getElementById('certificate-descriptionAr').value = cert.descriptionAr || '';
+
+  projectsList.innerHTML = '';
+  (cert.relatedProjects || []).forEach((p) => addProjectRow(p.en, p.ar));
 
   const logoPreview = document.getElementById('certificate-logo-preview');
   if (cert.logoUrl) {
@@ -116,23 +147,22 @@ certForm.addEventListener('submit', async function (e) {
   const submitBtn = document.getElementById('certificate-submit-btn');
 
   const formData = new FormData();
-  formData.append('title', document.getElementById('certificate-title').value);
-  formData.append('issuer', document.getElementById('certificate-issuer').value);
+  formData.append('titleEn', document.getElementById('certificate-titleEn').value);
+  formData.append('titleAr', document.getElementById('certificate-titleAr').value);
+  formData.append('issuerEn', document.getElementById('certificate-issuerEn').value);
+  formData.append('issuerAr', document.getElementById('certificate-issuerAr').value);
   formData.append('year', document.getElementById('certificate-year').value);
   formData.append('verificationLink', document.getElementById('certificate-link').value);
   formData.append('order', document.getElementById('certificate-order').value);
-  formData.append('description', document.getElementById('certificate-description').value);
-  formData.append('relatedProjects', document.getElementById('certificate-projects').value);
+  formData.append('descriptionEn', document.getElementById('certificate-descriptionEn').value);
+  formData.append('descriptionAr', document.getElementById('certificate-descriptionAr').value);
+  formData.append('relatedProjects', JSON.stringify(getProjectsFromForm()));
 
   const logoFile = document.getElementById('certificate-logo').files[0];
-  if (logoFile) {
-    formData.append('logo', logoFile);
-  }
+  if (logoFile) formData.append('logo', logoFile);
 
   const certImageFile = document.getElementById('certificate-cert-image').files[0];
-  if (certImageFile) {
-    formData.append('certificateImage', certImageFile);
-  }
+  if (certImageFile) formData.append('certificateImage', certImageFile);
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Saving...';

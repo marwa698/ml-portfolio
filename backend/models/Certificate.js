@@ -1,18 +1,33 @@
 const mongoose = require('mongoose');
 
+const projectRefSchema = new mongoose.Schema(
+  {
+    en: { type: String, required: true, trim: true },
+    ar: { type: String, required: true, trim: true },
+  },
+  { _id: false }
+);
+
 const certificateSchema = new mongoose.Schema(
   {
-    title: { type: String, required: [true, 'اسم الشهادة مطلوب'], trim: true },
-    issuer: { type: String, required: [true, 'الجهة المانحة مطلوبة'], trim: true },
+    titleEn: { type: String, required: [true, 'اسم الشهادة بالإنجليزي مطلوب'], trim: true },
+    titleAr: { type: String, required: [true, 'اسم الشهادة بالعربي مطلوب'], trim: true },
+
+    issuerEn: { type: String, required: [true, 'الجهة المانحة بالإنجليزي مطلوبة'], trim: true },
+    issuerAr: { type: String, required: [true, 'الجهة المانحة بالعربي مطلوبة'], trim: true },
+
     year: { type: String, required: true },
-    // لوجو الجهة المانحة - يظهر في كروت البورتوفوليو
+
     logoUrl: { type: String, required: true },
-    // صورة الشهادة الفعلية - تظهر في صفحة التفاصيل بس
     certificateImageUrl: { type: String, default: '' },
     verificationLink: { type: String, default: '' },
     order: { type: Number, default: 0 },
-    description: { type: String, default: '' },
-    relatedProjects: { type: [String], default: [] },
+
+    descriptionEn: { type: String, default: '' },
+    descriptionAr: { type: String, default: '' },
+
+    // مشاريع مرتبطة، كل واحد بنسخة إنجليزي وعربي
+    relatedProjects: { type: [projectRefSchema], default: [] },
   },
   { timestamps: true }
 );

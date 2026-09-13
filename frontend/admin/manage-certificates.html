@@ -53,7 +53,7 @@
 
   <!-- ============ Modal: إضافة / تعديل شهادة ============ -->
   <div class="modal-overlay" id="certificate-modal">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width:640px;">
       <div class="modal-header">
         <h3 class="modal-title" id="certificate-modal-title">Add certificate</h3>
         <button class="modal-close-btn" id="certificate-modal-close"><i class="fa-solid fa-xmark"></i></button>
@@ -62,19 +62,36 @@
       <form id="certificate-form">
         <input type="hidden" id="certificate-id" />
 
-        <div class="modal-form-group">
-          <label>Certificate title</label>
-          <input type="text" id="certificate-title" class="form-input" placeholder="Machine Learning Specialization" required />
+        <div class="modal-form-row">
+          <div class="modal-form-group">
+            <label>Certificate title (English)</label>
+            <input type="text" id="certificate-titleEn" class="form-input" placeholder="Machine Learning Specialization" required />
+          </div>
+          <div class="modal-form-group">
+            <label>Certificate title (Arabic)</label>
+            <input type="text" id="certificate-titleAr" class="form-input" placeholder="تخصص تعلم الآلة" dir="rtl" required />
+          </div>
         </div>
 
         <div class="modal-form-row">
           <div class="modal-form-group">
-            <label>Issuer</label>
-            <input type="text" id="certificate-issuer" class="form-input" placeholder="Stanford University" required />
+            <label>Issuer (English)</label>
+            <input type="text" id="certificate-issuerEn" class="form-input" placeholder="Stanford University" required />
           </div>
+          <div class="modal-form-group">
+            <label>Issuer (Arabic)</label>
+            <input type="text" id="certificate-issuerAr" class="form-input" placeholder="جامعة ستانفورد" dir="rtl" required />
+          </div>
+        </div>
+
+        <div class="modal-form-row">
           <div class="modal-form-group">
             <label>Year</label>
             <input type="text" id="certificate-year" class="form-input" placeholder="2024" required />
+          </div>
+          <div class="modal-form-group">
+            <label>Display order</label>
+            <input type="number" id="certificate-order" class="form-input" placeholder="0" value="0" />
           </div>
         </div>
 
@@ -83,35 +100,40 @@
           <input type="url" id="certificate-link" class="form-input" placeholder="https://coursera.org/verify/..." />
         </div>
 
-        <div class="modal-form-group">
-          <label>Display order</label>
-          <input type="number" id="certificate-order" class="form-input" placeholder="0" value="0" />
+        <div class="modal-form-row">
+          <div class="modal-form-group">
+            <label>What you learned (English)</label>
+            <textarea id="certificate-descriptionEn" class="form-textarea" placeholder="Describe what you learned in this course..."></textarea>
+          </div>
+          <div class="modal-form-group">
+            <label>What you learned (Arabic)</label>
+            <textarea id="certificate-descriptionAr" class="form-textarea" placeholder="اوصفي اللي اتعلمتيه في الكورس ده..." dir="rtl"></textarea>
+          </div>
         </div>
 
-          <div class="modal-form-group">
-  <label>What you learned (shown on details page)</label>
-  <textarea id="certificate-description" class="form-textarea" placeholder="Describe what you learned in this course..."></textarea>
-</div>
-
-<div class="modal-form-group">
-  <label>Related projects (optional, one per line)</label>
-  <textarea id="certificate-projects" class="form-textarea" style="min-height: 80px;" placeholder="Project 1 name&#10;Project 2 name"></textarea>
-</div>
         <div class="modal-form-group">
-  <label>Issuer logo (shown on portfolio cards)</label>
-  <div class="file-input-wrap">
-    <img id="certificate-logo-preview" class="file-preview" style="display: none;" />
-    <input type="file" id="certificate-logo" accept="image/*" />
-  </div>
-</div>
+          <label>Related projects (optional)</label>
+          <div id="certificate-projects-list"></div>
+          <button type="button" class="btn btn-outline" id="add-project-btn" style="margin-top:8px;">
+            <i class="fa-solid fa-plus"></i> Add project
+          </button>
+        </div>
 
-<div class="modal-form-group">
-  <label>Certificate image (shown on details page, optional)</label>
-  <div class="file-input-wrap">
-    <img id="certificate-cert-image-preview" class="file-preview" style="display: none;" />
-    <input type="file" id="certificate-cert-image" accept="image/*" />
-  </div>
-</div>
+        <div class="modal-form-group">
+          <label>Issuer logo (shown on portfolio cards)</label>
+          <div class="file-input-wrap">
+            <img id="certificate-logo-preview" class="file-preview" style="display: none;" />
+            <input type="file" id="certificate-logo" accept="image/*" />
+          </div>
+        </div>
+
+        <div class="modal-form-group">
+          <label>Certificate image (shown on details page, optional)</label>
+          <div class="file-input-wrap">
+            <img id="certificate-cert-image-preview" class="file-preview" style="display: none;" />
+            <input type="file" id="certificate-cert-image" accept="image/*" />
+          </div>
+        </div>
 
         <div class="modal-actions">
           <button type="button" class="btn btn-outline" id="certificate-cancel-btn">Cancel</button>
