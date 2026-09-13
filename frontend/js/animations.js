@@ -1,18 +1,27 @@
-// تأثيرات السكرول: إظهار العناصر تدريجياً + تفعيل نقطة القسم الحالي في النافيجيشن الجانبي
+// تأثيرات السكرول: إظهار العناصر تدريجياً + تفعيل نقطة القسم الحالي في النافيجيشن الجانبي + تلوين رابط القسم الحالي في النافبار
 
 document.addEventListener('DOMContentLoaded', function () {
-  // === Scroll spy: تفعيل النقطة الصحيحة في side-nav حسب القسم المعروض ===
   const sections = document.querySelectorAll('section[id]');
   const navItems = document.querySelectorAll('.side-nav-item');
+  const navLinks = document.querySelectorAll('#nav-links a[href]');
 
-  if (sections.length && navItems.length) {
+  // === Scroll spy: تفعيل النقطة الصحيحة في side-nav + الرابط الصحيح في النافبار حسب القسم المعروض ===
+  if (sections.length && (navItems.length || navLinks.length)) {
     const observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
+
             navItems.forEach(function (item) {
               item.classList.toggle('active', item.getAttribute('data-section') === id);
+            });
+
+            // بنقارن بآخر جزء من الـ href عشان يشتغل سواء الرابط "#home" أو "index.html#home"
+            navLinks.forEach(function (link) {
+              const href = link.getAttribute('href') || '';
+              const hrefId = href.split('#')[1];
+              link.classList.toggle('active', hrefId === id);
             });
           }
         });
@@ -64,20 +73,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // === فتح/قفل قائمة الموبايل ===
-  // === فتح/قفل قائمة الموبايل ===
-const mobileToggle = document.getElementById('nav-toggle-mobile');
-const navLinks = document.getElementById('nav-links');
-if (mobileToggle && navLinks) {
-  mobileToggle.addEventListener('click', function () {
-    navLinks.classList.toggle('mobile-open');
-  });
-
-  // نقفل القائمة تلقائيًا لما المستخدم يدوس على أي رابط جواها
-  const navLinkItems = navLinks.querySelectorAll('a');
-  navLinkItems.forEach(function (link) {
-    link.addEventListener('click', function () {
-      navLinks.classList.remove('mobile-open');
+  const mobileToggle = document.getElementById('nav-toggle-mobile');
+  const navLinksContainer = document.getElementById('nav-links');
+  if (mobileToggle && navLinksContainer) {
+    mobileToggle.addEventListener('click', function () {
+      navLinksContainer.classList.toggle('mobile-open');
     });
-  });
-}
+
+    const navLinkItems = navLinksContainer.querySelectorAll('a');
+    navLinkItems.forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinksContainer.classList.remove('mobile-open');
+      });
+    });
+  }
 });
